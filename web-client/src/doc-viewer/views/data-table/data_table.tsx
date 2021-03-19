@@ -33,7 +33,7 @@ const DataTable : React.FunctionComponent = () => {
     const [isLoading, setIsLoading] = useState(false);
 
     return <>
-        <DataGrid<CSVMetaData>
+        {/* <DataGrid<CSVMetaData>
             columns={columns}
             rows={rowData}
             rowKeyGetter={(row:any) => row.id}
@@ -42,8 +42,8 @@ const DataTable : React.FunctionComponent = () => {
             selectedRows={selectedRows}
             onSelectedRowsChange={setSelectedRows}
             className="fill-grid"
-        />
-        {isLoading && <LoadMoreRowsWrapper>Loading more rows...</LoadMoreRowsWrapper>}
+        /> */}
+        {/* {isLoading && <LoadMoreRowsWrapper>Loading more rows...</LoadMoreRowsWrapper>} */}
     </>;
 }
 

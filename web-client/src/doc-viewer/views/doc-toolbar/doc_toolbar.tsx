@@ -89,20 +89,20 @@ const dataHeaders: string[] = ["Header 1", "Header 2"];
 const queryTypes: string[] = ["Regex"];
 
 const DocumentToolbar : React.FunctionComponent = () => {
-    const [regexFilterValue, setRegexFilterValue] = useState<string>(queryTypes[0]);
+    const [regexFilterValue, setRegexFilterValue] = useState<string>("");
     const [selectedColumn, setSelectedColumn] = useState<string>(dataHeaders[0]);
+    const [queryType, setQueryType] = useState<string>(queryTypes[0]);
 
     return <DocumentToolbarWrapper>
         <QueryTypeLayoutWrapper>
-            <DropdownMenu activeOption={regexFilterValue} options={queryTypes} onChange={(option: string) => {}}/>
+            <DropdownMenu activeOption={queryType} options={queryTypes} onChange={(option: string) => setQueryType(option)}/>
         </QueryTypeLayoutWrapper>
         <ColumnSelectionLayoutWrapper>
-            <DropdownMenu activeOption={selectedColumn} options={dataHeaders} onChange={(option: string) => {}}/>
+            <DropdownMenu activeOption={selectedColumn} options={dataHeaders} onChange={(option: string) => setSelectedColumn(option)}/>
         </ColumnSelectionLayoutWrapper>
         <FilterInputWrapper>
-            <FilterInput type="text" placeholder="Enter REGEX filter text here..." onChange={
-                (e: React.ChangeEvent<HTMLInputElement>) => setRegexFilterValue(e.target.value)
-            }/>
+            <FilterInput type="text" placeholder="Enter REGEX filter text here..." value={regexFilterValue}
+                onChange={  (e: React.ChangeEvent<HTMLInputElement>) => setRegexFilterValue(e.target.value)}/>
             <FilterButton> Filter </FilterButton>
         </FilterInputWrapper>
         <ResultTextWrapper><ResultText results={345}/></ResultTextWrapper>

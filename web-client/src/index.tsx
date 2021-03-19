@@ -4,10 +4,12 @@ import './index.css';
 import { App } from './app';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ModalManager from './modals/modal_manager';
 
 ReactDOM.render(
   <React.StrictMode>
     <App />
+    <ModalManager />
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,7 +1,7 @@
 import React from 'react';
 
 const AlertPanel : React.FunctionComponent = () => {
-    return <></>;
+    return <>Alert</>;
 }
 
 export default AlertPanel;
