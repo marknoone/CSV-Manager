@@ -1,14 +1,8 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import ModalHeader from '../modal_header';
-import ModalFooter from '../modal_footer';
-
-export interface ConfimationPanelProps {
-    message: string;
-    closeModal: () => void;
-    onReject: () =>  void;
-    onAccept: () => void;
-}
+import Modal from '../modal';
+import { Selectors } from '../store';
 
 const ConfirmationTextContainer = styled.div`
     padding: 16px 24px;
@@ -28,21 +22,18 @@ const ErrConfirmationText = styled(ConfirmationText)`
     color: #d63031
 `;
 
-const ConfirmationPanel : React.FunctionComponent<ConfimationPanelProps> = ({ message, closeModal, onReject, ...props }) => {
-    return  <>    
-                <ModalHeader title="Confirmation Panel" onClose={closeModal}/>
+const ConfirmationPanel : React.FunctionComponent = () => {
+    const modalProps = useSelector(Selectors.getCurrrentModalProps);
+    console.log(modalProps);
+    return  <Modal>
                 <ConfirmationTextContainer>
                     {   
-                        message ? 
-                        <ConfirmationText>{ message }</ConfirmationText> : 
+                        modalProps.confirmationMessage ? 
+                        <ConfirmationText>{ modalProps.confirmationMessage }</ConfirmationText> : 
                         <ErrConfirmationText>Err: No message passed.</ErrConfirmationText> 
                     }
                 </ConfirmationTextContainer>
-                <ModalFooter {...props} onClose={() => {
-                    onReject();
-                    closeModal();
-                }}/>
-            </>;
+            </Modal>;
 }
 
 export default ConfirmationPanel;

@@ -3,16 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import styled from 'styled-components';
 
-interface ModalFooterProps {
-    footerNote?: string;
-    
-    acceptText?: string
-    onAccept?: () => void;
-    
-    cancelText?: string
-    onClose?: () => void;
-}
-
 const FooterContainer = styled.div`
     position: relative;
     height: 64px;
@@ -82,7 +72,17 @@ const CloseButton = styled(Button)`
     background-color: #ee5253;
 `;
 
-const ModalFooter : React.FunctionComponent<ModalFooterProps> = ({footerNote, acceptText, onAccept, cancelText, onClose}) => {
+export type ModalFooterProps = {
+    footerNote?: string;
+    
+    acceptText?: string
+    onAccept?: () => void;
+    
+    cancelText?: string
+    onCancel?: () => void;
+}
+
+const ModalFooter : React.FunctionComponent<ModalFooterProps> = ({footerNote, acceptText, onAccept, cancelText, onCancel}) => {
     return <FooterLayoutWrapper>
         <FooterContainer>
             {
@@ -103,8 +103,8 @@ const ModalFooter : React.FunctionComponent<ModalFooterProps> = ({footerNote, ac
                 </AcceptButton>
             }
             {
-                !onClose ? null :
-                <CloseButton onClick={onClose}>
+                !onCancel ? null :
+                <CloseButton onClick={onCancel}>
                     {cancelText ? cancelText : "Close"}    
                 </CloseButton>
             }

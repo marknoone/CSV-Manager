@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
-import { Modals, MODAL_MAP } from './modal_map';
+import React from 'react';
+import { MODAL_MAP } from './modal_map';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
+import { Selectors } from './store';
 
 const ModalContainer = styled.div`
     position: absolute;
@@ -13,33 +15,12 @@ const ModalContainer = styled.div`
     text-align: center;
 `; 
 
-const Modal = styled.div`
-    position: relative;
-    background: white;
-    border-radius: 6px;
-    width: 40vw;
-    height: 40vh;
-    margin: auto;
-    margin-top: 15vh;
-    box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.3);
-`; 
-
 const ModalManager : React.FunctionComponent<any> = (mainProps) => {
-    const props = { 
-        message: "Hello world!",
-        footerNote: "Testing notes....",
-        onAccept: () => { console.log("Accept"); },
-        onReject: () => { console.log("Reject"); },
-    }
+    const isModalShowing = useSelector(Selectors.isModalOpen);
+    const currentModal = useSelector(Selectors.getCurrrentModal);
+    if(!isModalShowing) return <></>;
 
-    const [currentModal, setCurrentModal] = useState<Modals | null>(Modals.ConfirmationPanel);
-    if(!currentModal) return <></>;
-
-    return <ModalContainer>
-        <Modal>
-            { MODAL_MAP[currentModal]({...props, closeModal: () => setCurrentModal(null)}) }
-        </Modal>
-    </ModalContainer>;
+    return <ModalContainer> { MODAL_MAP[currentModal] }</ModalContainer>;
 }
 
 export default ModalManager;

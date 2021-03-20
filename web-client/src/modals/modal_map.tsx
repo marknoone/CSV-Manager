@@ -3,7 +3,7 @@ import { ConfirmationPanel } from './confirmation-panel';
 import { OpenCSVMenu } from './open-csv-menu';
 
 type ModalMap = {
-    [key:number] : (props: any) => JSX.Element; 
+    [key:number] : JSX.Element; 
 }
 
 export enum Modals {
@@ -13,7 +13,7 @@ export enum Modals {
 }
 
 export const MODAL_MAP: ModalMap = {
-    [Modals.AlertPanel] :  (props: any) => <AlertPanel {...props} />, 
-    [Modals.ConfirmationPanel] : (props: any) => <ConfirmationPanel {...props} /> , 
-    [Modals.OpenCSVMenu] :  (props: any) => <OpenCSVMenu {...props} /> , 
+    [Modals.AlertPanel] :  <AlertPanel />, 
+    [Modals.ConfirmationPanel] : <ConfirmationPanel /> , 
+    [Modals.OpenCSVMenu] : <OpenCSVMenu /> , 
 }

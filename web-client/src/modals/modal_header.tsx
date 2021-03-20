@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-interface ModalHeaderProps {
-    title: string;
-    onClose: () => void;
+export type ModalHeaderProps = {
+    title?: string;
+    onCancel: () => void;
 }
 
 const ModalHeaderContainer = styled.div`
@@ -33,11 +33,11 @@ const CloseButtonContainer = styled.span`
     cursor: pointer;
 `;
 
-const ModalHeader : React.FunctionComponent<ModalHeaderProps> = ({ title, onClose }) => {
+const ModalHeader : React.FunctionComponent<ModalHeaderProps> = ({ title, onCancel }) => {
     return <ModalHeaderContainer>
         <ModalHeaderText>
-            { title }
-            <CloseButtonContainer onClick={onClose}>
+            { title ? title : "Modal" }
+            <CloseButtonContainer onClick={onCancel}>
                 <FontAwesomeIcon icon={faTimes} size={'lg'} />
             </CloseButtonContainer>
         </ModalHeaderText>
