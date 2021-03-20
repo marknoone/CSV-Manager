@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { Modals, MODAL_MAP } from './modal_map';
 import styled from 'styled-components';
-import ModalHeader from './modal_header';
-import ModalFooter from './modal_footer';
 
 const ModalContainer = styled.div`
     position: absolute;
@@ -26,25 +24,20 @@ const Modal = styled.div`
     box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.3);
 `; 
 
-const ModalFooterLayoutWrapper = styled.div`
-    position: absolute;
-    bottom:0;
-    right: 0;
-    left: 0;
-`;
+const ModalManager : React.FunctionComponent<any> = (mainProps) => {
+    const props = { 
+        message: "Hello world!",
+        footerNote: "Testing notes....",
+        onAccept: () => { console.log("Accept"); },
+        onReject: () => { console.log("Reject"); },
+    }
 
-
-const ModalManager : React.FunctionComponent = () => {
-    const [currentModal, setCurrentModal] = useState<Modals | null>(Modals.AlertPanel);
+    const [currentModal, setCurrentModal] = useState<Modals | null>(Modals.ConfirmationPanel);
     if(!currentModal) return <></>;
 
     return <ModalContainer>
         <Modal>
-            <ModalHeader title="Modal" onClose={() => setCurrentModal(null)}/>
-            { MODAL_MAP[currentModal] }
-            <ModalFooterLayoutWrapper>
-                <ModalFooter footerNote="Testing notes..." onClose={() => setCurrentModal(null)} onAccept={()=>{}}/>
-            </ModalFooterLayoutWrapper>
+            { MODAL_MAP[currentModal]({...props, closeModal: () => setCurrentModal(null)}) }
         </Modal>
     </ModalContainer>;
 }

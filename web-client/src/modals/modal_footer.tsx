@@ -46,6 +46,13 @@ const FooterNote = styled.p`
     margin: 0;
 `;
 
+const FooterLayoutWrapper = styled.div`
+    position: absolute;
+    bottom:0;
+    right: 0;
+    left: 0;
+`;
+
 const Button = styled.button`
     padding: 8px 16px;
     border-radius: 6px;
@@ -76,31 +83,33 @@ const CloseButton = styled(Button)`
 `;
 
 const ModalFooter : React.FunctionComponent<ModalFooterProps> = ({footerNote, acceptText, onAccept, cancelText, onClose}) => {
-    return <FooterContainer>
-        {
-            !footerNote ? null :
-            (
-                <FooterNoteContainer>
-                    <FooterNoteIconContainer>
-                        <FontAwesomeIcon icon={faInfoCircle} size={'lg'}/>
-                    </FooterNoteIconContainer>
-                    <FooterNote>{ footerNote }</FooterNote>
-                </FooterNoteContainer>
-            )
-        }
-        {
-            !onAccept ? null :
-            <AcceptButton onClick={onAccept}>
-                {acceptText ? acceptText : "Okay"}
-            </AcceptButton>
-        }
-        {
-            !onClose ? null :
-            <CloseButton onClick={onClose}>
-                {cancelText ? cancelText : "Close"}    
-            </CloseButton>
-        }
-    </FooterContainer>;
+    return <FooterLayoutWrapper>
+        <FooterContainer>
+            {
+                !footerNote ? null :
+                (
+                    <FooterNoteContainer>
+                        <FooterNoteIconContainer>
+                            <FontAwesomeIcon icon={faInfoCircle} size={'lg'}/>
+                        </FooterNoteIconContainer>
+                        <FooterNote>{ footerNote }</FooterNote>
+                    </FooterNoteContainer>
+                )
+            }
+            {
+                !onAccept ? null :
+                <AcceptButton onClick={onAccept}>
+                    {acceptText ? acceptText : "Okay"}
+                </AcceptButton>
+            }
+            {
+                !onClose ? null :
+                <CloseButton onClick={onClose}>
+                    {cancelText ? cancelText : "Close"}    
+                </CloseButton>
+            }
+        </FooterContainer>
+    </FooterLayoutWrapper> ;
 }
 
 export default ModalFooter;
