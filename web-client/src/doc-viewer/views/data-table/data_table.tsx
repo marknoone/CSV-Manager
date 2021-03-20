@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import DataGrid, { SelectColumn } from 'react-data-grid';
+import { SelectColumn } from 'react-data-grid';
 import type { Column } from 'react-data-grid';
-import { CSVMetaData } from './csv_data_model';
+import { CSVMetaData } from '../../../model';
 
 const LoadMoreRowsWrapper = styled.div`
     width: 180px;
@@ -22,9 +22,9 @@ const columns: readonly Column<CSVMetaData>[] = [
 ];
   
 const rows: CSVMetaData[] = [
-    { id: 0, title: "Task 1" },
-    { id: 1, title: "Task 2" },
-    { id: 2, title: "Task 3" }
+    { id: 0, title: "Task 1", createdAt: 1616265832, fileSizeKB: 1000, sourceURL: "http://www.google.com/" },
+    { id: 1, title: "Task 2", createdAt: 1616265832, fileSizeKB: 1000, sourceURL: "http://www.google.com/" },
+    { id: 2, title: "Task 3", createdAt: 1616265832, fileSizeKB: 1000, sourceURL: "http://www.google.com/" }
 ];
 
 const DataTable : React.FunctionComponent = () => {
