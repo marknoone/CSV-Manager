@@ -2,7 +2,7 @@ export type CSVMetaData = {
     id: number;
     title: string;
     createdAt: number;
-    fileSizeKB: number;
+    fileSizeBytes: number;
     sourceURL: string;
 }
 

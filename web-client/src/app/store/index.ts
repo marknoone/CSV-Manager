@@ -5,7 +5,7 @@ export type CSVManagerState = {
     csvFiles: CSVMetaData[];
 }
 
-export type ModalAction = {
+export type CSVManagerAction = {
     type: string
     payload:  { 
         data:  CSVMetaData[]

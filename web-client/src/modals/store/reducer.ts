@@ -4,10 +4,9 @@ import { OPEN_MODAL_ACTION, CLOSE_MODAL_ACTION, ModalAction, ModalState } from '
 
 export const initialState = {
     isModalOpen: true,
-    modalType: Modals.ConfirmationPanel,
+    modalType: Modals.OpenCSVMenu,
     modalProps: { 
         confirmationMessage: "Hello world!",
-        footerNote: "Testing notes....",
         onAccept: () => { console.log("Accept"); },
         onReject: () => { console.log("Reject"); },
     }

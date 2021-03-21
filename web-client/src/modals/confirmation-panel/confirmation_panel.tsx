@@ -24,7 +24,7 @@ const ErrConfirmationText = styled(ConfirmationText)`
 
 const ConfirmationPanel : React.FunctionComponent = () => {
     const modalProps = useSelector(Selectors.getCurrrentModalProps);
-    console.log(modalProps);
+    
     return  <Modal>
                 <ConfirmationTextContainer>
                     {   
