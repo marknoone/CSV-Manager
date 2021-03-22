@@ -1,8 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { SelectColumn } from 'react-data-grid';
+import DataGrid, { SelectColumn } from 'react-data-grid';
 import type { Column } from 'react-data-grid';
-import { CSVMetaData } from '../../../model';
+import { CSVData, CSVMetaData } from '../../../model';
+import { useDispatch, useSelector } from 'react-redux';
+import { Selectors, Actions } from './store';
+
+const ReactDataGridContainer = styled.div`
+    height: 100%;
+`;
 
 const LoadMoreRowsWrapper = styled.div`
     width: 180px;
@@ -14,12 +20,6 @@ const LoadMoreRowsWrapper = styled.div`
     line-height: 35px;
     background: rgba(0, 0, 0, 0.6);
 `;
-
-const columns: readonly Column<CSVMetaData>[] = [
-    SelectColumn,
-    { key: "id", name: "ID", width:80},
-    { key: "title", name: "Title", editable: true }
-];
   
 const rows: CSVMetaData[] = [
     { id: 0, title: "Task 1", createdAt: 1616265832, fileSizeBytes: 1000, sourceURL: "http://www.google.com/" },
@@ -27,24 +27,41 @@ const rows: CSVMetaData[] = [
     { id: 2, title: "Task 3", createdAt: 1616265832, fileSizeBytes: 1000, sourceURL: "http://www.google.com/" }
 ];
 
-const DataTable : React.FunctionComponent = () => {
-    const [rowData, setRowData] = useState(rows);
-    const [selectedRows, setSelectedRows] = useState(() => new Set<React.Key>());
-    const [isLoading, setIsLoading] = useState(false);
+const EmptyRowsRenderer: React.FunctionComponent = () => {
+    return <div style={{ textAlign: 'center' }}>Nothing to show <span lang="ja" title="ショボーン">(´・ω・`)</span></div>;
+  }
 
-    return <>
-        {/* <DataGrid<CSVMetaData>
+interface DataTableProps {
+    hasSelectColumn?: boolean
+}
+
+const DataTable : React.FunctionComponent<DataTableProps> = ({ hasSelectColumn }) => {
+    const dispatch = useDispatch();
+    const rows = useSelector(Selectors.getCurrentData);
+    const selectedKeys = useSelector(Selectors.getSelectedKeys);
+    const isLoading = useSelector(Selectors.isCSVFileDataLoading);
+    const columns: readonly Column<CSVData>[] = [
+        ...( hasSelectColumn ? [ SelectColumn ] : []),
+        ...useSelector(Selectors.getReactDataGridColumns)
+    ];
+
+    return <ReactDataGridContainer>
+        <DataGrid
+            className="rdg-light"
             columns={columns}
-            rows={rowData}
+            rows={rows}
+            emptyRowsRenderer={EmptyRowsRenderer}
             rowKeyGetter={(row:any) => row.id}
-            onRowsChange={setRowData}
-            rowHeight={30}
-            selectedRows={selectedRows}
-            onSelectedRowsChange={setSelectedRows}
-            className="fill-grid"
-        /> */}
-        {/* {isLoading && <LoadMoreRowsWrapper>Loading more rows...</LoadMoreRowsWrapper>} */}
-    </>;
+            selectedRows={selectedKeys}
+            onRowsChange={(data: any) => {
+                dispatch(Actions.setCSVData(data))
+            }}
+            onSelectedRowsChange={(keys: Set<React.Key>) => {
+                dispatch(Actions.setSelectedKeys(keys))
+            }}
+        />
+        {/* {isLoading && <LoadMoreRowsWrapper>Loading more rows...</LoadMoreRowsWrapper> */}
+    </ReactDataGridContainer>;
 }
 
 export default DataTable;

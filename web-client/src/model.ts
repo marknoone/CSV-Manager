@@ -6,7 +6,6 @@ export type CSVMetaData = {
     sourceURL: string;
 }
 
-export type CSVData = {
-    headers: string[];
-    data: any;
+export type CSVData = { 
+    [key: string]: any;
 }

@@ -11,10 +11,11 @@ export const initialState = {
   
 const CSVManagerReducer: Reducer<CSVManagerState, CSVManagerAction> = (state = initialState, action) => {
     switch (action.type) {
-      case SET_META_DATA:
-        return {
-            csvFiles: action.payload.data
-        }
+        case SET_META_DATA:
+            return {
+                ...state,
+                csvFiles: action.payload.data
+            }
       default:
         return state
     }
