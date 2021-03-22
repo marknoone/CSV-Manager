@@ -9,6 +9,7 @@ const DocumentToolbarWrapper = styled.div`
     background-color: #F8F8F8;
     border-bottom: 1px solid #ddd;
     position: relative;
+    z-index: 10;
 `;
 
 const QueryTypeLayoutWrapper = styled.div`
@@ -19,6 +20,7 @@ const QueryTypeLayoutWrapper = styled.div`
     width: 128px;
     height: 100%;
     border-right: 1px solid #ddd;
+    z-index: 10;
 `;
 
 const ColumnSelectionLayoutWrapper = styled.div`

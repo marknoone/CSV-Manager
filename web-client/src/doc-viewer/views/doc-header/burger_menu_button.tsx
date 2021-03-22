@@ -5,10 +5,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 type BurgerMenuButtonProps = {
     className?: string;
+    onClick?: () => void;
 }
 
-const BurgerMenuButton: React.FunctionComponent<BurgerMenuButtonProps> = ({ className }) => 
-    <div className={className}>
+const BurgerMenuButton: React.FunctionComponent<BurgerMenuButtonProps> = ({ className, onClick }) => 
+    <div className={className} onClick={() => onClick ? onClick() : null }>
         <FontAwesomeIcon icon={faBars} size="lg"/>
     </div>
 

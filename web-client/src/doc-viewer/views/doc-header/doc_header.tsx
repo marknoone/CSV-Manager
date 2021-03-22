@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { DropdownMenu } from '../../../dropdown-menu';
 import BurgerMenuButton from './burger_menu_button';
 
 const LayoutWrapper = styled.div`
@@ -8,6 +9,7 @@ const LayoutWrapper = styled.div`
     background: #f8f8f8;
     border-bottom: 1px solid #ddd;
     padding: 8px 16px;
+    position: relative;
 `;
 
 const DocumentNameLayoutWrapper = styled.div`
@@ -58,8 +60,17 @@ const DocumentNameSaveButton = styled.button`
 const DocumentHeader : React.FunctionComponent = () => {
     const [documentName, setDocumentName] = useState<string>("Untitled Document");
     const [isNameBeingEdited, setIsNameBeingEdited] = useState<boolean>(false);
+    const burgerMenuEntries = {
+        "Open": () => console.log("Open Button"),
+        "Import": () => console.log("Import Button"),
+        "Export": () => console.log("Export Button"),
+    }
+
     return <LayoutWrapper>
-        <BurgerMenuButton />
+        <DropdownMenu menuEntries={burgerMenuEntries}>
+            <BurgerMenuButton />
+        </DropdownMenu>
+        
         <DocumentNameLayoutWrapper>
             {
                 isNameBeingEdited? (<>
