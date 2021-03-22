@@ -10,6 +10,7 @@ interface DropdownMenuProps {
 
 const DropdownChildWrapper = styled.div`
     display: inline-block;
+    width: 100%;
 `;
 
 const DropdownMenuContainer = styled.ul`
@@ -28,6 +29,7 @@ const DropdownMenuContainer = styled.ul`
     box-shadow: 0px 2px 8px 1px rgba(0, 0, 0, 0.25);
     user-select: none;
     z-index: 128;
+    text-align: left;
 `
 
 const DropdownMenuElement = styled.li`
@@ -57,7 +59,7 @@ const DropdownMenu: React.FunctionComponent<DropdownMenuProps> = ({ menuEntries,
     }, [menuContainerRef]);
       
 
-    return <div style={{display: 'inline-block'}} ref={menuContainerRef}>
+    return <div style={{display: 'inline-block', width: '100%'}} ref={menuContainerRef}>
         <DropdownChildWrapper onClick={(e: React.MouseEvent<HTMLDivElement>) => {
             e.preventDefault();
             setIsMenuShowing(!isMenuShowing);

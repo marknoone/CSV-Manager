@@ -3,14 +3,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import styled from 'styled-components';
 
-type DropdownMenuProps = {
+type ToolbarButtonProps = {
+    label: string;
     className?: string;
-    options: string[];
-    activeOption: string;
-    onChange: (option: string) => void; 
+    onClick?: () => void; 
 }
 
-const ActiveOptionLabel = styled.p`
+const ButtonLabel = styled.p`
     font-family: 'Open Sans', sans-serif;
     font-size: 14px;
     font-weight: 500;
@@ -20,20 +19,21 @@ const ActiveOptionLabel = styled.p`
     padding-left: 8px;
 `;
 
-const QueryTypeButton: React.FunctionComponent<DropdownMenuProps> = ({ className, activeOption }) => 
-    <div className={className}>
-        <ActiveOptionLabel>{activeOption}</ActiveOptionLabel>
+const ToolbarButton: React.FunctionComponent<ToolbarButtonProps> = ({ className, label, onClick }) => 
+    <div className={className} onClick={() => onClick ? onClick() : null}>
+        <ButtonLabel>{label}</ButtonLabel>
         <FontAwesomeIcon icon={faCaretDown} style={{
             position: 'absolute', top:'6px', right: '8px', color: '#666'}}/>
     </div>
 
-const StyledDropdownButton = styled(QueryTypeButton)`
+const StyledToolbarButton = styled(ToolbarButton)`
     width: 100%;
     height: 100%;
     position: relative;
     cursor: pointer;
     background: none;
     border: none;
+    user-select: none;
 
     transition: background .5s;
 
@@ -43,4 +43,4 @@ const StyledDropdownButton = styled(QueryTypeButton)`
     }
 `;
 
-export default StyledDropdownButton;
+export default StyledToolbarButton;

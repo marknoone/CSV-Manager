@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import DropdownMenu from './dropdown_menu';
+import DropdownToolbarMenu from './dropdown_toolbar_button';
 import ResultText from './result_text';
 
 const DocumentToolbarWrapper = styled.div`
@@ -97,10 +97,10 @@ const DocumentToolbar : React.FunctionComponent = () => {
 
     return <DocumentToolbarWrapper>
         <QueryTypeLayoutWrapper>
-            <DropdownMenu activeOption={queryType} options={queryTypes} onChange={(option: string) => setQueryType(option)}/>
+            <DropdownToolbarMenu activeOption={queryType} options={queryTypes} onChange={(option: string) => setQueryType(option)}/>
         </QueryTypeLayoutWrapper>
         <ColumnSelectionLayoutWrapper>
-            <DropdownMenu activeOption={selectedColumn} options={dataHeaders} onChange={(option: string) => setSelectedColumn(option)}/>
+            <DropdownToolbarMenu activeOption={selectedColumn} options={dataHeaders} onChange={(option: string) => setSelectedColumn(option)}/>
         </ColumnSelectionLayoutWrapper>
         <FilterInputWrapper>
             <FilterInput type="text" placeholder="Enter REGEX filter text here..." value={regexFilterValue}

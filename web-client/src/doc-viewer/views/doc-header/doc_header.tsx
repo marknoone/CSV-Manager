@@ -12,6 +12,12 @@ const LayoutWrapper = styled.div`
     position: relative;
 `;
 
+const DropdownMenuLayoutWrapper = styled.div`
+    width: 48px;
+    text-align: center;
+    display: inline-block;
+`;
+
 const DocumentNameLayoutWrapper = styled.div`
     display: inline-block;
     margin-left: 12px;
@@ -67,9 +73,11 @@ const DocumentHeader : React.FunctionComponent = () => {
     }
 
     return <LayoutWrapper>
-        <DropdownMenu menuEntries={burgerMenuEntries}>
-            <BurgerMenuButton />
-        </DropdownMenu>
+        <DropdownMenuLayoutWrapper>
+            <DropdownMenu menuEntries={burgerMenuEntries}>
+                <BurgerMenuButton />
+            </DropdownMenu>
+        </DropdownMenuLayoutWrapper>
         
         <DocumentNameLayoutWrapper>
             {
