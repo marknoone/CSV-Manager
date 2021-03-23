@@ -7,6 +7,9 @@ class Config:
     TESTING = True
     DEBUG = True
     SECRET_KEY = b'_5#y2L"F4Q8z\n\xec]/'
+    UPLOAD_EXTENSIONS = ['.csv']
+    MAX_CONTENT_LENGTH = 50 * 1024 * 1024
+    UPLOAD_PATH = "uploads"
 
     # Database
     SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMY_DATABASE_URI',
