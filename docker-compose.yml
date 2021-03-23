@@ -1,0 +1,31 @@
+version: '3.6'
+
+services:
+  api:
+    build: .
+    depends_on:
+      - db
+    environment:
+      POSTGRES_USER: flask_csv
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: csv_manager
+    networks:
+      - default
+    ports:
+      - 5000:5000
+    restart: always
+
+  db:
+    environment:
+      POSTGRES_USER: flask_csv
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: csv_manager
+    image: postgres:latest
+    networks:
+      - default
+    ports:
+      - 5405:5432
+    restart: always
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d/
+      - ./postgres:/var/lib/postgresql/data

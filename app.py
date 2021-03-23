@@ -1,18 +1,30 @@
 import os
-from flask import Flask, jsonify
 from dotenv import load_dotenv
-from fs_repository import FSRepository
+from datetime import datetime as dt
+from flask import Flask, request, jsonify
 
-load_dotenv()
+def create_app():
 
-app = Flask(__name__)
-repository = FSRepository(os.getenv('CSV_FILE_PATH'))
+    app = Flask(__name__, instance_relative_config=False)
+    app.config.from_object('config.Config')
 
-@app.route('/meta', methods=['GET'])
-def index():
-    csvMetaData = repository.getCSVMetaData()
-    serializedData = map(lambda x: x.serialize(), csvMetaData)
-    return jsonify(list(serializedData))
+    @app.route('/', methods=['GET'])
+    def hello_world():
+        return {
+            'hello': 'world'
+        }
 
-if __name__ == "__main__":
-    app.run(debug=True)
+    @app.route('/csv', methods=['GET'])
+    def create_csv_file():
+        return {
+            'hello': 'csv'
+        }
+
+    # @app.route('/meta', methods=['GET'])
+    # def index():
+    #     csvMetaData = repository.getCSVMetaData()
+    #     serializedData = map(lambda x: x.serialize(), csvMetaData)
+    #     return jsonify(list(serializedData))
+
+    return app
+
