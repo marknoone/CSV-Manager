@@ -13,7 +13,7 @@ class FSRepository:
         csvFilesFound = Path(self._filepath ).rglob('**/*.csv')
         for fileID, path in enumerate(csvFilesFound):
             csvFileStats = path.stat()
-            self._csvMetaData[fileID] = CSVMetaData(fileID, 
+            self._csvMetaData[str(fileID)] = CSVMetaData(str(fileID), 
                 path.name,
                 path.absolute(),
                 csvFileStats.st_size,
@@ -24,6 +24,11 @@ class FSRepository:
 
     def getCSVMetaData(self):
         return list(self._csvMetaData.values())
+
+    def getCSVMetaDataByID(self, fileID):
+        if fileID in self._csvMetaData.keys():
+            return self._csvMetaData[fileID]
+        return None
 
     def getCSVData(self, fileID: int):
         if fileID in self._csvMetaData.keys():
