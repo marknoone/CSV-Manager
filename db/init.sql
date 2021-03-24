@@ -1,6 +1,3 @@
-CREATE DATABASE IF NOT EXISTS csv_manager;
-USE csv_manager;
-
 CREATE TABLE IF NOT EXISTS files (
     ID SERIAL,
     Name VARCHAR ( 255 ) NOT NULL,
