@@ -6,6 +6,7 @@ from datetime import datetime as dt
 from flask import Flask, jsonify, abort, send_file, request
 from flask_cors import CORS 
 from werkzeug.utils import secure_filename
+from werkzeug.exceptions import BadRequest
 from pathlib import Path
 from postgres_repository import PostgresRepository
 
@@ -18,7 +19,7 @@ def create_app():
 
 
     @app.route('/ping', methods=['GET'])
-    def index():
+    def heartbeat():
         return jsonify({})
     
     
@@ -39,13 +40,18 @@ def create_app():
 
 
     @app.route('/csv', methods=['POST'])
-    def upload_files():
-        uploaded_file = request.files['file']
-        filename = secure_filename(uploaded_file.filename)
-        if filename != '':
-            postgresRepository.addCSVFile(filename, uploaded_file.read())
-            return {}
-        return {}, 204
+    def uploadCSVFile():
+        try: 
+            uploaded_file = request.files['file']
+            filename = secure_filename(uploaded_file.filename)
+            if filename != '':
+                postgresRepository.addCSVFile(filename, uploaded_file.read())
+                return {}
+        except (BadRequest) as error:
+            print(error)
+            return jsonify({"error": "No file in request. Are you sure you're using the 'file' key?"}), 400
+        
+        return {}
 
 
 

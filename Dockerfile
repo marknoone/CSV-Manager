@@ -17,8 +17,4 @@ COPY . /usr/src/app/
 
 EXPOSE 5000
 
-RUN ls -la .
-
-RUN chmod 777 gunicorn.config.py
-
 ENTRYPOINT ["gunicorn", "-c", "gunicorn.config.py", "wsgi:app"]

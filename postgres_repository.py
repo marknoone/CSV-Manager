@@ -1,7 +1,7 @@
 import psycopg2
 
 def mapMetaToObj(metaData):
-    return {
+    return metaData if metaData is None else {
         "id": metaData[0], 
         "name": metaData[1], 
         "createdAt": metaData[2], 
@@ -20,6 +20,9 @@ class PostgresRepository():
     
 
     def addCSVFile(self, name, file):
+        if file is None:
+            return
+
         try: 
             cur = self._conn.cursor()
             cur.execute("INSERT INTO files(Name, File) " +
@@ -66,7 +69,6 @@ class PostgresRepository():
 
 
     def getCSVDataByID(self, fileID):
-        data = None
         try:
             cur = self._conn.cursor()
             cur.execute(""" SELECT ID, Name, File FROM files
@@ -74,13 +76,15 @@ class PostgresRepository():
                         ([fileID]))
 
             result = cur.fetchone()
-            data = (result[1], result[2])
             cur.close()
+
+            if result is not None:
+                return (result[1], result[2])
 
         except (Exception, psycopg2.DatabaseError) as error:
             print(error)
         
-        return data
+        return ("", None)
 
 
     def deleteCSVData(self, fileID):
