@@ -1,1 +1,0 @@
-export { default as DocumentToolbar } from './doc_toolbar';

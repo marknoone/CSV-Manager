@@ -1,10 +1,11 @@
 import { Reducer } from 'redux';
-import { CSVManagerAction, CSVDataState, SET_CSV_DATA, SET_DATA_LOADING, SET_ROW_KEYS } from './';
+import { CSVManagerAction, CSVDataState, SET_CSV_DATA, SET_DATA_LOADING, SET_ROW_KEYS, SET_DATA_FILTERS } from './';
 
 export const initialState = {
     isDataLoading: false,
     selectedKeys: new Set<React.Key>(),
     headers: ["ID", "Title", "Value", "Time" ],
+    dataFilters: {"ID": "", "Title": "tit", "Value": "", "Time": ""},
     data: [
         {"ID" : 1, "Title": "title", "Value": "value", "Time": "time"},
     ]
@@ -26,6 +27,11 @@ const CSVManagerReducer: Reducer<CSVDataState, CSVManagerAction> = (state = init
             return !action.payload.selectedKeys ? state : {
                 ...state,
                 selectedKeys: action.payload.selectedKeys
+            }
+        case SET_DATA_FILTERS:
+            return !action.payload.filters ? state : {
+                ...state,
+                dataFilters: action.payload.filters
             }
       default:
         return state
