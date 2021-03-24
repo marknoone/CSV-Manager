@@ -6,6 +6,7 @@ services:
     depends_on:
       - db
     environment:
+      POSTGRES_HOST: "db"
       POSTGRES_USER: flask_csv
       POSTGRES_PASSWORD: password
       POSTGRES_DB: csv_manager
