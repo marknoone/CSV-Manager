@@ -44,7 +44,8 @@ def create_app():
         filename = secure_filename(uploaded_file.filename)
         if filename != '':
             postgresRepository.addCSVFile(filename, uploaded_file.read())
-        return jsonify({}), 204
+            return {}
+        return {}, 204
 
 
 

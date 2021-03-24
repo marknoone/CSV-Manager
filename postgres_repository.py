@@ -1,5 +1,13 @@
 import psycopg2
 
+def mapMetaToObj(metaData):
+    return {
+        "id": metaData[0], 
+        "name": metaData[1], 
+        "createdAt": metaData[2], 
+        "lastModified": metaData[3]
+    }
+
 class PostgresRepository():
 
     def __init__(self, app):
@@ -10,6 +18,7 @@ class PostgresRepository():
             user=app.config['DATABASE_USERNAME'],
             password=app.config['DATABASE_PASSWORD'])
     
+
     def addCSVFile(self, name, file):
         try: 
             cur = self._conn.cursor()
@@ -27,17 +36,17 @@ class PostgresRepository():
 
 
     def getCSVMetaData(self):
-        metaData = None
+        metaDataList = None
         try:
             cur = self._conn.cursor()
             cur.execute(""" SELECT ID, Name, Created, LastModified FROM files """)
-            metaData = cur.fetchall()
+            metaDataList = cur.fetchall()
             cur.close()
 
         except (Exception, psycopg2.DatabaseError) as error:
             print(error)
 
-        return metaData
+        return map(mapMetaToObj, metaDataList)
 
 
     def getCSVMetaDataByID(self, fileID):
@@ -53,7 +62,7 @@ class PostgresRepository():
         except (Exception, psycopg2.DatabaseError) as error:
             print(error)
 
-        return metaData
+        return mapMetaToObj(metaData)
 
 
     def getCSVDataByID(self, fileID):
@@ -85,4 +94,5 @@ class PostgresRepository():
             print(error)
 
         return 
+
  
