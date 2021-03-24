@@ -1,12 +1,12 @@
-CREATE DATABASE IF NOT EXISTS `csv_manager`;
-USE `csv_manager`;
+CREATE DATABASE IF NOT EXISTS csv_manager;
+USE csv_manager;
 
-CREATE TABLE IF NOT EXISTS `files` (
-    `ID` INT(11) NOT NULL UNIQUE,
-    `Name` VARCHAR(255) NOT NULL,
-    `Created` DATETIME default GETDATE(),
-    `LastModified` DATETIME default GETDATE(),
-    `Version` INT NOT NULL default 0,
-    `File` LONGBLOB NOT NULL,
-    PRIMARY KEY(`ID`)
-) Engine = InnoDB;
+CREATE TABLE IF NOT EXISTS files (
+    ID SERIAL,
+    Name VARCHAR ( 255 ) NOT NULL,
+    Created TIMESTAMP default current_timestamp,
+    LastModified TIMESTAMP default current_timestamp,
+    Version INT NOT NULL default 0,
+    File bytea NOT NULL,
+    PRIMARY KEY(ID)
+);

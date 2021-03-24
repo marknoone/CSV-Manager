@@ -6,17 +6,12 @@ class Config:
     # General Config
     TESTING = True
     DEBUG = True
-    SECRET_KEY = b'_5#y2L"F4Q8z\n\xec]/'
     UPLOAD_EXTENSIONS = ['.csv']
     MAX_CONTENT_LENGTH = 50 * 1024 * 1024
-    UPLOAD_PATH = "uploads"
 
     # Database
-    SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMY_DATABASE_URI',
-                                             'postgresql+psycopg2://test:test@0.0.0.0:5401/test')
-    SQLALCHEMY_TABLE = 'migrations'
-    SQLALCHEMY_DB_SCHEMA = 'public'
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
-
-    # My API
-    API_ENDPOINT = 'http://127.0.0.1/'
+    DATABASE = os.getenv('POSTGRES_DB', 'db')
+    DATABASE_HOST = os.getenv('POSTGRES_HOST', '127.0.0.1')
+    DATABASE_PORT = os.getenv('POSTGRES_PORT', '5432')
+    DATABASE_USERNAME = os.getenv('POSTGRES_USER', 'postgres')
+    DATABASE_PASSWORD = os.getenv('POSTGRES_PASSWORD', 'password')
