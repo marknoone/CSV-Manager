@@ -1,7 +1,7 @@
 import type { Column } from 'react-data-grid';
-import { DataFilters } from '.';
-import { CSVData } from '../../../../model';
-import { GlobalState } from '../../../../store';
+import { DataFilters } from './';
+import { CSVData } from './';
+import { GlobalState } from '..';
 import styled from 'styled-components';
 
 const FilterContainer = styled.div`
@@ -24,7 +24,7 @@ const getCurrentData = (state:GlobalState): CSVData[] => state.csv.data;
 const getReactDataGridColumns = (state:GlobalState): Column<CSVData>[] => {
     return state.csv.headers.map((header: string) => ({
         key: header, name: header, resizable: false,
-        filterRenderer: p => (
+        filterRenderer: (p:any) => (
             <FilterContainer>
                 <FilterInput
                 type="text"

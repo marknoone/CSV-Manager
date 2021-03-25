@@ -1,8 +1,12 @@
 import React from 'react';
-import { DocumentViewer } from '../doc-viewer';
+import { DataTable } from './data-table';
+import { DocumentHeader } from './doc-header';
 
 const App: React.FunctionComponent = () => {
-  return <DocumentViewer />;
+  return <>
+      <DocumentHeader />
+      <DataTable />
+  </>;
 }
 
 export default App;

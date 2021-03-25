@@ -2,7 +2,7 @@ import React from 'react';
 import { MODAL_MAP } from './modal_map';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
-import { Selectors } from './store';
+import { Selectors } from '../store/modals';
 
 const ModalContainer = styled.div`
     position: absolute;

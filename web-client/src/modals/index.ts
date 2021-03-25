@@ -1,1 +1,1 @@
-export { default as ModelManager } from './modal_manager';
+export { default } from './modal_manager';

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { DropdownMenu } from '../../../dropdown-menu';
+import { DropdownMenu } from '../dropdown-menu';
 import BurgerMenuButton from './burger_menu_button';
 
 const LayoutWrapper = styled.div`

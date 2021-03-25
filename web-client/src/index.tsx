@@ -6,10 +6,10 @@ import { createStore, applyMiddleware  } from 'redux';
 import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import createSagaMiddleware from 'redux-saga';
-import mySagas from './sagas';
+import mySagas from './store/sagas';
 import rootReducer from './store';
 
-import { App } from './app';
+import App from './app';
 import ModalManager from './modals/modal_manager';
 import 'bootstrap/dist/css/bootstrap.min.css';
 

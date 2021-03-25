@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
-import ModalReducer, { ModalState } from './modals/store';
-import CSVManagerReducer, { CSVManagerState } from './app/store';
-import CSVDataReducer, { CSVDataState } from './doc-viewer/views/data-table/store';
+import ModalReducer, { ModalState } from './modals';
+import CSVManagerReducer, { CSVManagerState } from './meta';
+import CSVDataReducer, { CSVDataState } from './csv';
 
 export type GlobalState = {
     meta: CSVManagerState

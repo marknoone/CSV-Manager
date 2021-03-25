@@ -1,1 +1,0 @@
-export { default as DocumentViewer } from './doc_viewer';

@@ -1,5 +1,13 @@
 import CSVManagerReducer from './reducer'
-import { CSVMetaData, CSVData } from '../../model';
+
+export type CSVMetaData = {
+    id: number;
+    title: string;
+    createdAt: number;
+    fileSizeBytes: number;
+    sourceURL: string;
+}
+
 
 export type CSVManagerState = {
     csvFiles: CSVMetaData[];

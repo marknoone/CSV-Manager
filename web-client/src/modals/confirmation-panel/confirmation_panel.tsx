@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import Modal from '../modal';
-import { Selectors } from '../store';
+import { Selectors } from '../../store/modals';
 
 const ConfirmationTextContainer = styled.div`
     padding: 16px 24px;

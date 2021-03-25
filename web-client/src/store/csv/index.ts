@@ -1,5 +1,6 @@
 import CSVManagerReducer from './reducer'
-import { CSVData } from '../../../../model';
+
+export type CSVData = { [key: string]: any }
 
 export type DataFilters = { [key:string]: string }
 

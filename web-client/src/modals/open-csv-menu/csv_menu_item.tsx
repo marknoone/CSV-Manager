@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { CSVMetaData } from '../../model';
+import { CSVMetaData } from '../../store/meta';
 
 const CSVListElement = styled.li`
     position: relative;

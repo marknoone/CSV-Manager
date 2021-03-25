@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import Modal from '../modal';
-import { Selectors } from '../../app/store';
+import { Selectors } from '../../store/meta';
 import CSVListItem from './csv_menu_item';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';

@@ -1,6 +1,6 @@
 import { Reducer } from 'redux';
-import { Modals } from '../modal_map';
-import { OPEN_MODAL_ACTION, CLOSE_MODAL_ACTION, ModalAction, ModalState } from './';
+import { Modals } from '../../modals/modal_map';
+import { OPEN_MODAL_ACTION, CLOSE_MODAL_ACTION, ModalAction, ModalState } from '.';
 
 export const initialState = {
     isModalOpen: true,

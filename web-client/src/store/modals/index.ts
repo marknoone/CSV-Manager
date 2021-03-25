@@ -1,5 +1,5 @@
 import ModalReducer from './reducer'
-import { Modals } from '../modal_map';
+import { Modals } from '../../modals/modal_map';
 
 export type ModalState = {
     isModalOpen: boolean

@@ -1,5 +1,5 @@
 import { Reducer } from 'redux';
-import { SET_META_DATA, CSVManagerAction, CSVManagerState } from './';
+import { SET_META_DATA, CSVManagerAction, CSVManagerState } from '.';
 
 export const initialState = {
     csvFiles: [

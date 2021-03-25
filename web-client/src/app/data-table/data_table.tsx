@@ -2,9 +2,10 @@ import React, { useState, useMemo } from 'react';
 import styled from 'styled-components';
 import DataGrid, { SelectColumn } from 'react-data-grid';
 import type { Column } from 'react-data-grid';
-import { CSVData, CSVMetaData } from '../../../model';
+import { CSVMetaData } from '../../store/meta';
+import { CSVData } from '../../store/csv';
 import { useDispatch, useSelector } from 'react-redux';
-import { Selectors, Actions, DataFilters } from './store';
+import { Selectors, Actions, DataFilters } from '../../store/csv';
 
 const ReactDataGridContainer = styled.div`
     height: 100%;
