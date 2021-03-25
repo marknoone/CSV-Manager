@@ -1,9 +1,9 @@
 import { Reducer } from 'redux';
-import { CSVManagerAction, CSVDataState, SET_CSV_DATA, SET_DATA_LOADING, SET_ROW_KEYS, SET_DATA_FILTERS } from './';
+import { CSVManagerAction, CSVDataState, SET_FILTER_ROW_VISIBILITY, SET_CSV_DATA, SET_DATA_LOADING, SET_DATA_FILTERS } from './';
 
 export const initialState = {
+    isFilterRowVisible: true,
     isDataLoading: false,
-    selectedKeys: new Set<React.Key>(),
     headers: ["ID", "Title", "Value", "Time" ],
     dataFilters: {"ID": "", "Title": "tit", "Value": "", "Time": ""},
     data: [
@@ -13,6 +13,11 @@ export const initialState = {
   
 const CSVManagerReducer: Reducer<CSVDataState, CSVManagerAction> = (state = initialState, action) => {
     switch (action.type) {
+        case SET_FILTER_ROW_VISIBILITY:
+            return !action.payload.isFilterRowVisible ? state : {
+                ...state,
+                isFilterRowVisible: action.payload.isFilterRowVisible
+            }
         case SET_DATA_LOADING:
             return !action.payload.isDataLoading ? state : {
                 ...state,
@@ -22,11 +27,6 @@ const CSVManagerReducer: Reducer<CSVDataState, CSVManagerAction> = (state = init
             return !action.payload.data ? state : {
                 ...state,
                 currentFileData: action.payload.data
-            }
-        case SET_ROW_KEYS:
-            return !action.payload.selectedKeys ? state : {
-                ...state,
-                selectedKeys: action.payload.selectedKeys
             }
         case SET_DATA_FILTERS:
             return !action.payload.filters ? state : {

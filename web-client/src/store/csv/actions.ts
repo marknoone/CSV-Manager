@@ -7,17 +7,17 @@ const setCSVData = (csvData: CSVData) => ({
     }
 });
 
+const setIsFilterRowVisibile = (isFilterRowVisibile: boolean) => ({
+    type: SET_DATA_LOADING,
+    payload: {
+        isFilterRowVisibile: isFilterRowVisibile
+    }
+});
+
 const setDataIsLoading = (isLoading: boolean) => ({
     type: SET_DATA_LOADING,
     payload: {
         isDataLoading: isLoading
-    }
-});
-
-const setSelectedKeys = (keys: Set<React.Key>) => ({
-    type: SET_DATA_LOADING,
-    payload: {
-        selectedKeys: keys
     }
 });
 
@@ -30,7 +30,7 @@ const setDataFilters = (dataFilters: DataFilters) => ({
 
 export default {
     setCSVData,
-    setSelectedKeys,
     setDataIsLoading,
+    setIsFilterRowVisibile,
     setDataFilters
 }

@@ -54,7 +54,7 @@ const formatBytes = (bytes: number, decimals?: number) => {
  }
 
 const CSVListItem: React.FunctionComponent<CSVMetaData> = (metaData) => {
-    const formattedDate = new Date(metaData.createdAt * 1000);
+    const formattedDate = new Date(metaData.lastModified * 1000); 
     const formattedFileSize = formatBytes(metaData.fileSizeBytes)
 
     return <CSVListElement>

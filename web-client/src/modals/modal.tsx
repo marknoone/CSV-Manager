@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import ModalFooter, { ModalFooterProps } from './modal_footer';
-import ModalHeader, { ModalHeaderProps } from './modal_header';
+import ModalFooter from './modal_footer';
+import ModalHeader from './modal_header';
 import { Actions, Selectors } from '../store/modals';
 
 const ModalPanel = styled.div`

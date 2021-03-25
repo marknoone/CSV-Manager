@@ -5,8 +5,8 @@ export type CSVData = { [key: string]: any }
 export type DataFilters = { [key:string]: string }
 
 export type CSVDataState = {
+    isFilterRowVisible: boolean;
     isDataLoading: boolean;
-    selectedKeys: Set<React.Key>;
     dataFilters: DataFilters;
     headers: string[];
     data: CSVData[];
@@ -17,15 +17,16 @@ export type CSVManagerAction = {
     payload:  { 
         data?:  CSVData
         filters? : DataFilters
-        selectedKeys? : Set<React.Key>
         isDataLoading? : boolean
+        isFilterRowVisible? : boolean
     }
 }
 
-export const SET_DATA_LOADING = "@data/SET_DATA_LOADING";
-export const SET_CSV_DATA = "@data/SET_CSV_DATA";
-export const SET_ROW_KEYS = "@data/SET_ROW_KEYS";
-export const SET_DATA_FILTERS = "@data/SET_DATA_FILTERS";
+export const GET_CSV_DATA = "@csv/GET_CSV_DATA";
+export const SET_CSV_DATA = "@csv/SET_CSV_DATA";
+export const SET_DATA_LOADING = "@csv/SET_DATA_LOADING";
+export const SET_DATA_FILTERS = "@csv/SET_DATA_FILTERS";
+export const SET_FILTER_ROW_VISIBILITY = "@csv/SET_FILTER_ROW_VISIBILITY";
 
 export default CSVManagerReducer;
 export { default as Actions } from './actions';

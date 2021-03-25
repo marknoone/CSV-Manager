@@ -3,23 +3,22 @@ import CSVManagerReducer from './reducer'
 export type CSVMetaData = {
     id: number;
     title: string;
-    createdAt: number;
+    lastModified: number;
     fileSizeBytes: number;
-    sourceURL: string;
 }
 
-
-export type CSVManagerState = {
-    csvFiles: CSVMetaData[];
+export type CSVMetaDataState = {
+    csvMetaData: CSVMetaData[];
 }
 
-export type CSVManagerAction = {
+export type CSVMetaDataAction = {
     type: string
     payload:  { 
         data:  CSVMetaData[]
     }
 }
 
+export const GET_META_DATA = "@modal/GET_META_DATA";
 export const SET_META_DATA = "@modal/SET_META_DATA";
 
 export default CSVManagerReducer;
