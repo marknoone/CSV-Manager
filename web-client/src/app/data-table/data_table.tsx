@@ -65,7 +65,7 @@ const DataTable : React.FunctionComponent<DataTableProps> = ({ hasSelectColumn }
             emptyRowsRenderer={EmptyRowsRenderer}
             rowKeyGetter={(row:any) => row.id}
             onRowsChange={(data: any) => {
-                dispatch(Actions.setCSVData(data))
+                dispatch(Actions.setCSVData([], data))
             }}
         />
         {/* {isLoading && <LoadMoreRowsWrapper>Loading more rows...</LoadMoreRowsWrapper> */}

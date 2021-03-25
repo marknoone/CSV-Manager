@@ -7,7 +7,7 @@ export type DataFilters = { [key:string]: string }
 export type CSVDataState = {
     isFilterRowVisible: boolean;
     isDataLoading: boolean;
-    dataFilters: DataFilters;
+    filters: DataFilters;
     headers: string[];
     data: CSVData[];
 }
@@ -15,7 +15,8 @@ export type CSVDataState = {
 export type CSVManagerAction = {
     type: string
     payload:  { 
-        data?:  CSVData
+        headers?: string[]
+        data?:  CSVData[]
         filters? : DataFilters
         isDataLoading? : boolean
         isFilterRowVisible? : boolean

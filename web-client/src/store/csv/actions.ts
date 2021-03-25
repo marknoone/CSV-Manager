@@ -1,8 +1,11 @@
-import { DataFilters, CSVData, SET_CSV_DATA, SET_DATA_FILTERS, SET_DATA_LOADING } from './';
+import { DataFilters, CSVData, GET_CSV_DATA, SET_CSV_DATA, SET_DATA_FILTERS, SET_DATA_LOADING } from './';
 
-const setCSVData = (csvData: CSVData) => ({
+const getCSVData = () => ({ type: GET_CSV_DATA, payload: {} });
+
+const setCSVData = (csvHeaders: string[], csvData: CSVData[]) => ({
     type: SET_CSV_DATA,
     payload: {
+        headers: csvHeaders,
         data: csvData
     }
 });
@@ -29,6 +32,7 @@ const setDataFilters = (dataFilters: DataFilters) => ({
 });
 
 export default {
+    getCSVData,
     setCSVData,
     setDataIsLoading,
     setIsFilterRowVisibile,

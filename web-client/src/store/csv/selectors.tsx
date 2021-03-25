@@ -18,7 +18,7 @@ const FilterInput = styled.input`
 
 const isCSVFileDataLoading = (state:GlobalState): boolean => state.csv.isDataLoading;
 const isFilterRowVisibile = (state:GlobalState): boolean => state.csv.isFilterRowVisible;
-const getDataFilters = (state:GlobalState): DataFilters => state.csv.dataFilters;
+const getDataFilters = (state:GlobalState): DataFilters => state.csv.filters;
 const getCurrentData = (state:GlobalState): CSVData[] => state.csv.data;
 
 const getReactDataGridColumns = (state:GlobalState): Column<CSVData>[] => {

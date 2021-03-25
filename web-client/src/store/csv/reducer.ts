@@ -4,11 +4,9 @@ import { CSVManagerAction, CSVDataState, SET_FILTER_ROW_VISIBILITY, SET_CSV_DATA
 export const initialState = {
     isFilterRowVisible: true,
     isDataLoading: false,
-    headers: ["ID", "Title", "Value", "Time" ],
-    dataFilters: {"ID": "", "Title": "tit", "Value": "", "Time": ""},
-    data: [
-        {"ID" : 1, "Title": "title", "Value": "value", "Time": "time"},
-    ]
+    headers: [],
+    filters: {},
+    data: []
 }
   
 const CSVManagerReducer: Reducer<CSVDataState, CSVManagerAction> = (state = initialState, action) => {
@@ -24,10 +22,13 @@ const CSVManagerReducer: Reducer<CSVDataState, CSVManagerAction> = (state = init
                 isDataLoading: action.payload.isDataLoading
             }
         case SET_CSV_DATA:
-            return !action.payload.data ? state : {
+            return action.payload.headers && action.payload.data ? {
                 ...state,
-                currentFileData: action.payload.data
-            }
+                headers: action.payload.headers,
+                data: action.payload.data,
+                filters: action.payload.headers.reduce((accum, val) => 
+                    ({ ...accum, [val]: ""}), {})
+            } : state;
         case SET_DATA_FILTERS:
             return !action.payload.filters ? state : {
                 ...state,
