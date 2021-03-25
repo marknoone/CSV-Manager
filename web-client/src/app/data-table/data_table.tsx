@@ -1,45 +1,41 @@
-import React, { useState, useMemo } from 'react';
-import styled from 'styled-components';
-import DataGrid, { SelectColumn } from 'react-data-grid';
+import React, { useMemo } from 'react';
+import DataGrid from 'react-data-grid';
 import type { Column } from 'react-data-grid';
-import { CSVData } from '../../store/csv';
 import { useDispatch, useSelector } from 'react-redux';
-import { Selectors, Actions, DataFilters } from '../../store/csv';
+import { CSVData, Selectors, Actions, DataFilters } from '../../store/csv';
+import { ReactDataGridContainer, FilterContainer, FilterInput} from './styles';
 
-const ReactDataGridContainer = styled.div`
-    height: 100%;
-`;
-
-const LoadMoreRowsWrapper = styled.div`
-    width: 180px;
-    padding: 8px 16px;
-    position: absolute;
-    bottom: 8px;
-    right: 8px;
-    color: white;
-    line-height: 35px;
-    background: rgba(0, 0, 0, 0.6);
-`;
 
 const EmptyRowsRenderer: React.FunctionComponent = () => {
     return <div style={{ textAlign: 'center' }}>Nothing to show <span lang="ja" title="ショボーン">(´・ω・`)</span></div>;
-  }
-
-interface DataTableProps {
-    hasSelectColumn?: boolean
 }
 
-const DataTable : React.FunctionComponent<DataTableProps> = ({ hasSelectColumn }) => {
+
+const DataTable : React.FunctionComponent = () => {
     const dispatch = useDispatch();
-    const rows = useSelector(Selectors.getCurrentData);
+    const csvRows = useSelector(Selectors.getCurrentData);
+    const csvHeaders =  useSelector(Selectors.getCSVHeaders);
     const dataFilters = useSelector(Selectors.getDataFilters);
     const isFilterRowVisibile = useSelector(Selectors.isFilterRowVisibile);
     const setDataFilters = (filters: DataFilters) => dispatch(Actions.setDataFilters(filters))
-    const isLoading = useSelector(Selectors.isCSVFileDataLoading);
-    const columns: readonly Column<CSVData>[] =  useSelector(Selectors.getReactDataGridColumns);
+
+    const columns = useMemo((): readonly Column<CSVData>[] => {
+        return csvHeaders.map((header: string) => ({
+            key: header, name: header, resizable: false,
+            filterRenderer: (p:any) => (
+                <FilterContainer>
+                    <FilterInput
+                    type="text"
+                    value={p.value}
+                    onChange={e => p.onChange(e.target.value)}
+                    />
+                </FilterContainer>
+            )
+        }));
+    }, [csvHeaders]);
 
     const filteredRows = useMemo(() => {
-        return rows.filter(r => {
+        return csvRows.filter(r => {
             const filterKeys = Object.keys(dataFilters);
             return Object.keys(r).reduce((accum:boolean, columnKey: string) => {
                 console.log(filterKeys)
@@ -51,7 +47,7 @@ const DataTable : React.FunctionComponent<DataTableProps> = ({ hasSelectColumn }
                 return accum ? hasDataThatIncludesFilter : accum;
             }, true);
         });
-      }, [rows, dataFilters]);
+      }, [csvRows, dataFilters]);
     
 
     return <ReactDataGridContainer>
@@ -68,7 +64,6 @@ const DataTable : React.FunctionComponent<DataTableProps> = ({ hasSelectColumn }
                 dispatch(Actions.setCSVData([], data))
             }}
         />
-        {/* {isLoading && <LoadMoreRowsWrapper>Loading more rows...</LoadMoreRowsWrapper> */}
     </ReactDataGridContainer>;
 }
 

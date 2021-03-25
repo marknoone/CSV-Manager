@@ -32,7 +32,7 @@ const CSVManagerReducer: Reducer<CSVDataState, CSVManagerAction> = (state = init
         case SET_DATA_FILTERS:
             return !action.payload.filters ? state : {
                 ...state,
-                dataFilters: action.payload.filters
+                filters: action.payload.filters
             }
       default:
         return state
