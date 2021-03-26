@@ -46,24 +46,26 @@ const ImportFileIcon = styled.span`
     color: #343434;
 `;
 
-const OpenCSVPanel : React.FunctionComponent = () => {
+const OpenCSVPanel: React.FunctionComponent = () => {
     const csvMetaData = useSelector(Selectors.getCSVMetaData);
 
-    return  <Modal title={"Open CSV File"}>
-                <CSVMenuContainer>
-                    <CSVList>
-                        {   
-                            csvMetaData.map( metaData => <CSVListItem key={metaData.id} {...metaData} />)
-                        }
-                        <ImportFileRow>
-                            <ImportFileIcon>
-                                <FontAwesomeIcon icon={faPlus} />
-                            </ImportFileIcon>
-                            <ImportFileName> Import CSV File.</ImportFileName>
-                        </ImportFileRow>
-                    </CSVList>
-                </CSVMenuContainer>
-            </Modal>;
-}
+    return (
+        <Modal title={'Open CSV File'}>
+            <CSVMenuContainer>
+                <CSVList>
+                    {csvMetaData.map((metaData) => (
+                        <CSVListItem key={metaData.id} {...metaData} />
+                    ))}
+                    <ImportFileRow>
+                        <ImportFileIcon>
+                            <FontAwesomeIcon icon={faPlus} />
+                        </ImportFileIcon>
+                        <ImportFileName> Import CSV File.</ImportFileName>
+                    </ImportFileRow>
+                </CSVList>
+            </CSVMenuContainer>
+        </Modal>
+    );
+};
 
 export default OpenCSVPanel;

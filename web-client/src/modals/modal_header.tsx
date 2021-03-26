@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 export type ModalHeaderProps = {
     title?: string;
     onCancel: () => void;
-}
+};
 
 const ModalHeaderContainer = styled.div`
     position: relative;
@@ -33,15 +33,17 @@ const CloseButtonContainer = styled.span`
     cursor: pointer;
 `;
 
-const ModalHeader : React.FunctionComponent<ModalHeaderProps> = ({ title, onCancel }) => {
-    return <ModalHeaderContainer>
-        <ModalHeaderText>
-            { title ? title : "Modal" }
-            <CloseButtonContainer onClick={onCancel}>
-                <FontAwesomeIcon icon={faTimes} size={'lg'} />
-            </CloseButtonContainer>
-        </ModalHeaderText>
-    </ModalHeaderContainer>;
-}
+const ModalHeader: React.FunctionComponent<ModalHeaderProps> = ({ title, onCancel }: ModalHeaderProps) => {
+    return (
+        <ModalHeaderContainer>
+            <ModalHeaderText>
+                {title ? title : 'Modal'}
+                <CloseButtonContainer onClick={onCancel}>
+                    <FontAwesomeIcon icon={faTimes} size={'lg'} />
+                </CloseButtonContainer>
+            </ModalHeaderText>
+        </ModalHeaderContainer>
+    );
+};
 
 export default ModalHeader;

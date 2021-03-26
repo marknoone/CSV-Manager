@@ -5,30 +5,34 @@ import { OPEN_MODAL_ACTION, CLOSE_MODAL_ACTION, ModalAction, ModalState } from '
 export const initialState = {
     isModalOpen: false,
     modalType: Modals.OpenCSVMenu,
-    modalProps: { 
-        confirmationMessage: "Hello world!",
-        onAccept: () => { console.log("Accept"); },
-        onReject: () => { console.log("Reject"); },
-    }
-}
-  
+    modalProps: {
+        confirmationMessage: 'Hello world!',
+        onAccept: () => {
+            console.log('Accept');
+        },
+        onReject: () => {
+            console.log('Reject');
+        },
+    },
+};
+
 const ModalReducer: Reducer<ModalState, ModalAction> = (state = initialState, action) => {
     switch (action.type) {
-      case OPEN_MODAL_ACTION:
-        return {
-            isModalOpen: true,
-            modalProps: action.payload.props,
-            modalType: action.payload.type,
-        }
-      case CLOSE_MODAL_ACTION:
-        return {
-          ...initialState,
-          modalProps: {},
-          isModalOpen: false
-        }
-      default:
-        return state
+        case OPEN_MODAL_ACTION:
+            return {
+                isModalOpen: true,
+                modalProps: action.payload.props,
+                modalType: action.payload.type,
+            };
+        case CLOSE_MODAL_ACTION:
+            return {
+                ...initialState,
+                modalProps: {},
+                isModalOpen: false,
+            };
+        default:
+            return state;
     }
-}
+};
 
 export default ModalReducer;

@@ -13,29 +13,33 @@ const ModalPanel = styled.div`
     margin: auto;
     margin-top: 15vh;
     box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.3);
-`; 
+`;
 
 interface ModalProps {
     title?: string;
+    children?: React.ReactNode;
 }
 
-const Modal : React.FunctionComponent<ModalProps> = ({ title, children }) => {
+const Modal: React.FunctionComponent<ModalProps> = ({ title, children }: ModalProps) => {
     const dispatch = useDispatch();
     const closeModal = () => dispatch(Actions.closeModal());
     const modalProps = useSelector(Selectors.getCurrrentModalProps);
-    
-    if(modalProps.onAccept)
-        modalProps.onReject();
 
-    return <ModalPanel>
-        <ModalHeader title={title ? title : "Modal"} onCancel={closeModal} />
-            { children }
-        <ModalFooter {...modalProps} onCancel={() => {
-            if(modalProps.onReject)
-                modalProps.onReject();
-            closeModal();
-        }}/>
-    </ModalPanel>;
-}
+    if (modalProps.onAccept) modalProps.onReject();
+
+    return (
+        <ModalPanel>
+            <ModalHeader title={title ? title : 'Modal'} onCancel={closeModal} />
+            {children}
+            <ModalFooter
+                {...modalProps}
+                onCancel={() => {
+                    if (modalProps.onReject) modalProps.onReject();
+                    closeModal();
+                }}
+            />
+        </ModalPanel>
+    );
+};
 
 export default Modal;

@@ -45,24 +45,26 @@ const CSVListFileSizeWrapper = styled(CSVListItemWrapper)`
 `;
 
 const formatBytes = (bytes: number, decimals?: number) => {
-    if(bytes == 0) return '0 Bytes';
-    var k = 1024,
+    if (bytes == 0) return '0 Bytes';
+    const k = 1024,
         dm = decimals || 2,
         sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
         i = Math.floor(Math.log(bytes) / Math.log(k));
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
- }
+};
 
 const CSVListItem: React.FunctionComponent<CSVMetaData> = (metaData) => {
-    const formattedDate = new Date(metaData.lastModified * 1000); 
-    const formattedFileSize = formatBytes(metaData.fileSizeBytes)
+    const formattedDate = new Date(metaData.lastModified * 1000);
+    const formattedFileSize = formatBytes(metaData.fileSizeBytes);
 
-    return <CSVListElement>
-        <CSVListIDWrapper>{ metaData.id }.</CSVListIDWrapper>
-        <CSVListTitleWrapper>{ metaData.title }</CSVListTitleWrapper>
-        <CSVListFileSizeWrapper>{ formattedFileSize }</CSVListFileSizeWrapper>
-        <CSVListCreatedAtWrapper>{ formattedDate.toLocaleString() }</CSVListCreatedAtWrapper>
-    </CSVListElement>;
+    return (
+        <CSVListElement>
+            <CSVListIDWrapper>{metaData.id}.</CSVListIDWrapper>
+            <CSVListTitleWrapper>{metaData.title}</CSVListTitleWrapper>
+            <CSVListFileSizeWrapper>{formattedFileSize}</CSVListFileSizeWrapper>
+            <CSVListCreatedAtWrapper>{formattedDate.toLocaleString()}</CSVListCreatedAtWrapper>
+        </CSVListElement>
+    );
 };
 
 export default CSVListItem;

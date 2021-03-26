@@ -3,15 +3,15 @@ import { Modals } from '../../modals/modal_map';
 
 const closeModal = () => ({ type: CLOSE_MODAL_ACTION });
 
-const showModal = ({modalProps, modalType}: {modalProps:any, modalType:Modals}) => ({
+const showModal = ({ modalProps, modalType }: { modalProps: any; modalType: Modals }) => ({
     type: OPEN_MODAL_ACTION,
     payload: {
         type: modalType,
         props: modalProps,
-    }
+    },
 });
 
 export default {
     showModal,
-    closeModal
-}
+    closeModal,
+};

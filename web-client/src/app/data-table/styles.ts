@@ -5,13 +5,13 @@ export const ReactDataGridContainer = styled.div`
 `;
 
 export const FilterContainer = styled.div`
-  display: flex;
-  height: inherit;
-  align-items: center;
+    display: flex;
+    height: inherit;
+    align-items: center;
 `;
 
 export const FilterInput = styled.input`
-  width: 100%;
-  padding: 4px;
-  font-size: 14px;
+    width: 100%;
+    padding: 4px;
+    font-size: 14px;
 `;

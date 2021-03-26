@@ -6,29 +6,29 @@ const setCSVData = (csvHeaders: string[], csvData: CSVData[]) => ({
     type: SET_CSV_DATA,
     payload: {
         headers: csvHeaders,
-        data: csvData
-    }
+        data: csvData,
+    },
 });
 
 const setIsFilterRowVisibile = (isFilterRowVisibile: boolean) => ({
     type: SET_DATA_LOADING,
     payload: {
-        isFilterRowVisibile: isFilterRowVisibile
-    }
+        isFilterRowVisibile: isFilterRowVisibile,
+    },
 });
 
 const setDataIsLoading = (isLoading: boolean) => ({
     type: SET_DATA_LOADING,
     payload: {
-        isDataLoading: isLoading
-    }
+        isDataLoading: isLoading,
+    },
 });
 
 const setDataFilters = (dataFilters: DataFilters) => ({
     type: SET_DATA_FILTERS,
     payload: {
-        filters: dataFilters
-    }
+        filters: dataFilters,
+    },
 });
 
 export default {
@@ -36,5 +36,5 @@ export default {
     setCSVData,
     setDataIsLoading,
     setIsFilterRowVisibile,
-    setDataFilters
-}
+    setDataFilters,
+};

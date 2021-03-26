@@ -3,8 +3,6 @@ import CSVSagas from './csv/sagas';
 import MetaSagas from './meta/sagas';
 
 export default function* rootSaga() {
-    yield all([
-        CSVSagas(),
-        MetaSagas(),
-    ]);
- }
+    yield all([CSVSagas(), MetaSagas()]);
+    return;
+}

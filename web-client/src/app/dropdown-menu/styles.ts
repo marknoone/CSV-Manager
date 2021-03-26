@@ -22,15 +22,18 @@ export const DropdownMenuContainer = styled.ul`
     user-select: none;
     z-index: 128;
     text-align: left;
-`
+`;
 
 export const DropdownMenuElement = styled.li`
     padding: 12px 24px;
     cursor: pointer;
     background: none;
-    transform: scale(1.0);
+    transform: scale(1);
 
-    &:hover { background: #efefef; }
-    &:active { transform: scale(0.95); }
-
+    &:hover {
+        background: #efefef;
+    }
+    &:active {
+        transform: scale(0.95);
+    }
 `;

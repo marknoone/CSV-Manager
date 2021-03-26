@@ -48,14 +48,14 @@ export const DocumentNameSaveButton = styled.button`
     border: none;
     margin-left: 16px;
 
-    transform: scale(1.0);
-    transition: scale .5s;
+    transform: scale(1);
+    transition: scale 0.5s;
 
     &:active {
-        transform: scale(.95);
+        transform: scale(0.95);
     }
 
-    background-color: #00a8ff; 
+    background-color: #00a8ff;
     font-family: 'Open Sans', sans-serif;
 `;
 
@@ -67,11 +67,11 @@ export const BurgerMenuButtonContainer = styled.div`
     cursor: pointer;
     background: none;
     border-radius: 50%;
-    transform: scale(1.0);
+    transform: scale(1);
 
-    transition: background .25s;
-    transition: scale .5s;
-    
+    transition: background 0.25s;
+    transition: scale 0.5s;
+
     &:hover {
         background: rgba(0, 0, 0, 0.1);
     }
