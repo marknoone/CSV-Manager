@@ -3,7 +3,7 @@ import DataGrid from 'react-data-grid';
 import type { Column } from 'react-data-grid';
 import { useDispatch, useSelector } from 'react-redux';
 import { CSVData, Selectors, Actions, DataFilters } from '../../store/csv';
-import { ReactDataGridContainer, FilterContainer, FilterInput } from './styles';
+import { StyledDataGridHOF, FilterContainer, FilterInput } from './styles';
 
 const EmptyRowsRenderer: React.FunctionComponent = () => {
     return (
@@ -18,12 +18,13 @@ const EmptyRowsRenderer: React.FunctionComponent = () => {
 
 const FilterRenderer: React.FunctionComponent = (p: any) => (
     <FilterContainer>
-        <FilterInput type="text" value={p.value} onChange={(e) => p.onChange(e.target.value)} />
+        <FilterInput type="text" value={p.value} placeholder="Filter" onChange={(e) => p.onChange(e.target.value)} />
     </FilterContainer>
 );
 FilterRenderer.displayName = 'FilterRenderer';
 
-const DataTable: React.FunctionComponent = () => {
+type DataTableProps = { className?: string };
+const DataTable: React.FunctionComponent<DataTableProps> = ({ className }: DataTableProps) => {
     const dispatch = useDispatch();
     const csvRows = useSelector(Selectors.getCurrentData);
     const csvHeaders = useSelector(Selectors.getCSVHeaders);
@@ -55,24 +56,22 @@ const DataTable: React.FunctionComponent = () => {
     }, [csvRows, dataFilters]);
 
     return (
-        <ReactDataGridContainer>
-            <DataGrid
-                className="rdg-light"
-                columns={columns}
-                rows={filteredRows}
-                filters={dataFilters}
-                onFiltersChange={setDataFilters}
-                enableFilterRow={isFilterRowVisibile}
-                emptyRowsRenderer={EmptyRowsRenderer}
-                rowKeyGetter={(row: any) => row.id}
-                onRowsChange={(data: any) => {
-                    dispatch(Actions.setCSVData([], data));
-                }}
-            />
-        </ReactDataGridContainer>
+        <DataGrid
+            className={className}
+            columns={columns}
+            rows={filteredRows}
+            filters={dataFilters}
+            onFiltersChange={setDataFilters}
+            enableFilterRow={isFilterRowVisibile}
+            emptyRowsRenderer={EmptyRowsRenderer}
+            rowKeyGetter={(row: any) => row.id}
+            onRowsChange={(data: any) => {
+                dispatch(Actions.setCSVData([], data));
+            }}
+        />
     );
 };
 
 DataTable.displayName = 'DataTable';
 
-export default DataTable;
+export default StyledDataGridHOF(DataTable);

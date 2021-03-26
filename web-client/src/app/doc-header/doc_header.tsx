@@ -13,8 +13,8 @@ const DocumentHeader: React.FunctionComponent = () => {
     const resultCount = useSelector(Selectors.getCurrentDataRowCount);
     const headerButtons: HeaderButtons = {
         Open: () => console.log('Open Button'),
-        Import: () => console.log('Import Button'),
-        Export: () => console.log('Export Button'),
+        Upload: () => console.log('Import Button'),
+        Download: () => console.log('Export Button'),
     };
 
     return (

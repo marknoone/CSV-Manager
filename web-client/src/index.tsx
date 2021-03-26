@@ -11,6 +11,7 @@ import rootReducer from './store';
 import App from './app';
 import ModalManager from './modals/modal_manager';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './index.css';
 
 const sagas = createSagaMiddleware();
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(sagas)));
