@@ -73,6 +73,16 @@ export const ResultCountContainer = styled.div`
         font-size: 14px;
         font-weight: 500;
         line-height: 64px;
-        color: #777;
+        color: #212529;
+    }
+`;
+
+export const FileDownloadButton = styled.a`
+    user-select: none;
+    color: #212529;
+
+    &:hover {
+        text-decoration: none;
+        color: #212529;
     }
 `;

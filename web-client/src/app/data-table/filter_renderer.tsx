@@ -15,10 +15,12 @@ export const FilterInput = styled.input`
     font-size: 14px;
 `;
 
-export const StyledDataGridHOF = (rdg: React.FunctionComponent): React.FunctionComponent => styled(rdg)`
-    background-color: #fff;
-    height: calc(100vh - 64px);
-    border: none;
-    overflow-y: auto;
-    overflow-x: hidden;
-`;
+const FilterRenderer: React.FunctionComponent = (p: any) => (
+    <FilterContainer>
+        <FilterInput type="text" value={p.value} placeholder="Filter" onChange={(e) => p.onChange(e.target.value)} />
+    </FilterContainer>
+);
+
+FilterRenderer.displayName = 'FilterRenderer';
+
+export default FilterRenderer;

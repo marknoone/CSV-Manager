@@ -1,20 +1,29 @@
 import React from 'react';
 import AppIcon from './csv.png';
-import { LayoutWrapper, AppIconContainer, HeaderButtonList, HeaderContainer, ResultCountContainer } from './styles';
 import { Selectors } from '../../store/csv';
-import { useSelector } from 'react-redux';
+import { Actions as ModalActions } from '../../store/modals';
+import { Modals } from '../../modals/modal_map';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+    LayoutWrapper,
+    AppIconContainer,
+    HeaderButtonList,
+    HeaderContainer,
+    ResultCountContainer,
+    FileDownloadButton,
+} from './styles';
 
 type HeaderButtons = {
     [menuTitle: string]: () => void;
 };
 
 const DocumentHeader: React.FunctionComponent = () => {
+    const dispatch = useDispatch();
     const documentName = useSelector(Selectors.getCurrentName);
-    const resultCount = useSelector(Selectors.getCurrentDataRowCount);
+    const resultCount = useSelector(Selectors.getFilteredData).length;
     const headerButtons: HeaderButtons = {
-        Open: () => console.log('Open Button'),
-        Upload: () => console.log('Import Button'),
-        Download: () => console.log('Export Button'),
+        Open: () => dispatch(ModalActions.showModal(Modals.OpenCSVMenu, {})),
+        Upload: () => dispatch(ModalActions.showModal(Modals.ImportPanel, {})),
     };
 
     return (
@@ -32,6 +41,17 @@ const DocumentHeader: React.FunctionComponent = () => {
                             </li>
                         );
                     })}
+                    <li>
+                        <FileDownloadButton
+                            href="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
+                            title="Download CSV File"
+                            target="_blank"
+                            rel="noreferrer"
+                            download
+                        >
+                            Download
+                        </FileDownloadButton>
+                    </li>
                 </HeaderButtonList>
             </HeaderContainer>
             <ResultCountContainer>

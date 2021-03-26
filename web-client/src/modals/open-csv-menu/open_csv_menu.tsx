@@ -1,11 +1,13 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import Modal from '../modal';
 import { Selectors } from '../../store/meta';
 import CSVListItem from './csv_menu_item';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { Actions } from '../../store/modals';
+import { Modals } from '../modal_map';
 
 const CSVMenuContainer = styled.div`
     padding: 0px 24px;
@@ -47,6 +49,7 @@ const ImportFileIcon = styled.span`
 `;
 
 const OpenCSVPanel: React.FunctionComponent = () => {
+    const dispatch = useDispatch();
     const csvMetaData = useSelector(Selectors.getCSVMetaData);
 
     return (
@@ -56,7 +59,7 @@ const OpenCSVPanel: React.FunctionComponent = () => {
                     {csvMetaData.map((metaData) => (
                         <CSVListItem key={metaData.id} {...metaData} />
                     ))}
-                    <ImportFileRow>
+                    <ImportFileRow onClick={() => dispatch(Actions.showModal(Modals.ImportPanel, {}))}>
                         <ImportFileIcon>
                             <FontAwesomeIcon icon={faPlus} />
                         </ImportFileIcon>

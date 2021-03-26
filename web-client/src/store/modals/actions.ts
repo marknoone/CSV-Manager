@@ -3,7 +3,7 @@ import { Modals } from '../../modals/modal_map';
 
 const closeModal = () => ({ type: CLOSE_MODAL_ACTION });
 
-const showModal = ({ modalProps, modalType }: { modalProps: any; modalType: Modals }) => ({
+const showModal = (modalType: Modals, modalProps: any) => ({
     type: OPEN_MODAL_ACTION,
     payload: {
         type: modalType,
