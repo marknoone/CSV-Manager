@@ -1,5 +1,6 @@
 import { ConfirmationPanel } from './confirmation-panel';
 import { OpenCSVMenu } from './open-csv-menu';
+import { ImportPanel } from './import-panel';
 
 type ModalMap = {
     [key: number]: JSX.Element;
@@ -8,9 +9,11 @@ type ModalMap = {
 export enum Modals {
     ConfirmationPanel = 1,
     OpenCSVMenu,
+    ImportPanel,
 }
 
 export const MODAL_MAP: ModalMap = {
     [Modals.ConfirmationPanel]: <ConfirmationPanel />,
     [Modals.OpenCSVMenu]: <OpenCSVMenu />,
+    [Modals.ImportPanel]: <ImportPanel />,
 };

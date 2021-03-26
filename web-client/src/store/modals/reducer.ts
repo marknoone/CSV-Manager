@@ -3,17 +3,9 @@ import { Modals } from '../../modals/modal_map';
 import { OPEN_MODAL_ACTION, CLOSE_MODAL_ACTION, ModalAction, ModalState } from '.';
 
 export const initialState = {
-    isModalOpen: false,
-    modalType: Modals.OpenCSVMenu,
-    modalProps: {
-        confirmationMessage: 'Hello world!',
-        onAccept: () => {
-            console.log('Accept');
-        },
-        onReject: () => {
-            console.log('Reject');
-        },
-    },
+    isModalOpen: true,
+    modalType: Modals.ImportPanel,
+    modalProps: {},
 };
 
 const ModalReducer: Reducer<ModalState, ModalAction> = (state = initialState, action) => {

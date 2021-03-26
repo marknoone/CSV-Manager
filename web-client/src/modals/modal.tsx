@@ -12,6 +12,7 @@ const ModalPanel = styled.div`
     width: 35vw;
     margin: auto;
     margin-top: 15vh;
+    padding-bottom: 64px;
     box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.3);
 `;
 
