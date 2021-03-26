@@ -10,6 +10,7 @@ export type CSVDataState = {
     filters: DataFilters;
     headers: string[];
     data: CSVData[];
+    fileID: string;
 };
 
 export type CSVManagerAction = {

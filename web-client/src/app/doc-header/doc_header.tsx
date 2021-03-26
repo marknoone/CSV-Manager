@@ -1,21 +1,17 @@
-import React, { useState } from 'react';
-import { DropdownMenu } from '../dropdown-menu';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-    LayoutWrapper,
-    DropdownMenuLayoutWrapper,
-    DocumentNameLayoutWrapper,
-    DocumentNameInput,
-    DocumentNameSaveButton,
-    DocumentName,
-    BurgerMenuButtonContainer,
-} from './styles';
+import React from 'react';
+import AppIcon from './csv.png';
+import { LayoutWrapper, AppIconContainer, HeaderButtonList, HeaderContainer, ResultCountContainer } from './styles';
+import { Selectors } from '../../store/csv';
+import { useSelector } from 'react-redux';
+
+type HeaderButtons = {
+    [menuTitle: string]: () => void;
+};
 
 const DocumentHeader: React.FunctionComponent = () => {
-    const [documentName, setDocumentName] = useState<string>('Untitled Document');
-    const [isNameBeingEdited, setIsNameBeingEdited] = useState<boolean>(false);
-    const burgerMenuEntries = {
+    const documentName = useSelector(Selectors.getCurrentName);
+    const resultCount = useSelector(Selectors.getCurrentDataRowCount);
+    const headerButtons: HeaderButtons = {
         Open: () => console.log('Open Button'),
         Import: () => console.log('Import Button'),
         Export: () => console.log('Export Button'),
@@ -23,42 +19,24 @@ const DocumentHeader: React.FunctionComponent = () => {
 
     return (
         <LayoutWrapper>
-            <DropdownMenuLayoutWrapper>
-                <DropdownMenu menuEntries={burgerMenuEntries}>
-                    <BurgerMenuButtonContainer>
-                        <FontAwesomeIcon icon={faBars} size="lg" />
-                    </BurgerMenuButtonContainer>
-                </DropdownMenu>
-            </DropdownMenuLayoutWrapper>
-
-            <DocumentNameLayoutWrapper>
-                {isNameBeingEdited ? (
-                    <>
-                        <DocumentNameInput
-                            type="text"
-                            value={documentName}
-                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                                setDocumentName(e.target.value);
-                            }}
-                        />
-                        <DocumentNameSaveButton
-                            onClick={() => {
-                                setIsNameBeingEdited(false);
-                            }}
-                        >
-                            Save
-                        </DocumentNameSaveButton>
-                    </>
-                ) : (
-                    <DocumentName
-                        onClick={() => {
-                            setIsNameBeingEdited(true);
-                        }}
-                    >
-                        {documentName}
-                    </DocumentName>
-                )}
-            </DocumentNameLayoutWrapper>
+            <AppIconContainer>
+                <img src={AppIcon} />
+            </AppIconContainer>
+            <HeaderContainer>
+                <p>{documentName}</p>
+                <HeaderButtonList>
+                    {Object.entries(headerButtons).map(([buttonName, buttonCallback]) => {
+                        return (
+                            <li key={buttonName} onClick={buttonCallback}>
+                                {buttonName}
+                            </li>
+                        );
+                    })}
+                </HeaderButtonList>
+            </HeaderContainer>
+            <ResultCountContainer>
+                <p>{resultCount} Resulting Rows</p>
+            </ResultCountContainer>
         </LayoutWrapper>
     );
 };

@@ -14,6 +14,7 @@ export const initialState = {
     headers: [],
     filters: {},
     data: [],
+    fileID: '',
 };
 
 const CSVManagerReducer: Reducer<CSVDataState, CSVManagerAction> = (state = initialState, action) => {

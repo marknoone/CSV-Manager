@@ -8,13 +8,15 @@ export type CSVMetaData = {
 };
 
 export type CSVMetaDataState = {
-    csvMetaData: CSVMetaData[];
+    csvMetaData: {
+        [fileID: string]: CSVMetaData;
+    };
 };
 
 export type CSVMetaDataAction = {
     type: string;
     payload: {
-        data: CSVMetaData[];
+        data: { [fileID: string]: CSVMetaData };
     };
 };
 

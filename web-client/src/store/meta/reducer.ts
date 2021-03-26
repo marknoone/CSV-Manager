@@ -2,7 +2,7 @@ import { Reducer } from 'redux';
 import { SET_META_DATA, CSVMetaDataAction, CSVMetaDataState } from '.';
 
 export const initialState = {
-    csvMetaData: [],
+    csvMetaData: {},
 };
 
 const CSVManagerReducer: Reducer<CSVMetaDataState, CSVMetaDataAction> = (state = initialState, action) => {

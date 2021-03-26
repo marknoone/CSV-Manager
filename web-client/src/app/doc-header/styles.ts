@@ -3,80 +3,75 @@ import styled from 'styled-components';
 export const LayoutWrapper = styled.div`
     width: 100%;
     height: 64px;
-    background: #f8f8f8;
+    background: #fff;
     border-bottom: 1px solid #ddd;
-    padding: 8px 16px;
     position: relative;
 `;
 
-export const DropdownMenuLayoutWrapper = styled.div`
-    width: 48px;
-    text-align: center;
+export const AppIconContainer = styled.div`
+    position: absolute;
     display: inline-block;
-`;
-
-export const DocumentNameLayoutWrapper = styled.div`
-    display: inline-block;
-    margin-left: 12px;
-`;
-
-export const DocumentName = styled.p`
-    display: inline-block;
-    font-size: 18px;
-    font-family: 'Open Sans', sans-serif;
-    user-select: none;
-    cursor: pointer;
-`;
-
-export const DocumentNameInput = styled.input`
-    font-size: 18px;
-    font-family: 'Open Sans', sans-serif;
-    border-radius: 6px;
-    border: 1px solid #dedede;
-    padding: 4px 12px;
     height: 100%;
-    outline: 0;
-`;
+    left: 0;
+    top: 0;
+    padding: 8px;
 
-export const DocumentNameSaveButton = styled.button`
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    color: white;
-    padding: 8px 12px;
-    border-radius: 4px;
-    border: none;
-    margin-left: 16px;
-
-    transform: scale(1);
-    transition: scale 0.5s;
-
-    &:active {
-        transform: scale(0.95);
+    img {
+        width: 100%;
+        height: 100%;
     }
-
-    background-color: #00a8ff;
-    font-family: 'Open Sans', sans-serif;
 `;
 
-export const BurgerMenuButtonContainer = styled.div`
-    width: 48px;
-    padding: 11px 0px;
+export const HeaderContainer = styled.div`
+    position: absolute;
     display: inline-block;
-    text-align: center;
-    cursor: pointer;
-    background: none;
-    border-radius: 50%;
-    transform: scale(1);
+    height: 100%;
+    left: 72px;
+    top: 0;
 
-    transition: background 0.25s;
-    transition: scale 0.5s;
-
-    &:hover {
-        background: rgba(0, 0, 0, 0.1);
+    p {
+        display: inline-block;
+        font-size: 18px;
+        font-family: 'Open Sans', sans-serif;
+        user-select: none;
+        margin: 0;
+        margin-top: 8px;
+        margin-left: 8px;
     }
+`;
 
-    &:active {
-        transform: scale(0.9);
+export const HeaderButtonList = styled.ul`
+    list-type: none;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+        display: inline-block;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        padding: 4px 8px;
+        cursor: pointer;
+        border-radius: 2px;
+
+        &:hover {
+            background: #ddd;
+        }
+    }
+`;
+
+export const ResultCountContainer = styled.div`
+    position: absolute;
+    height: 100%;
+    right: 32px;
+    top: 0;
+
+    p {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 64px;
+        color: #777;
     }
 `;
