@@ -27,7 +27,7 @@ const DataTable: React.FunctionComponent<DataTableProps> = ({ className }: DataT
 
     return (
         <DataGrid
-            className={className}
+            className={'rdg-light ' + className}
             columns={reactDataGridFriendlyColumns}
             rows={csvRows}
             filters={dataFilters}
