@@ -11,6 +11,8 @@ function* downloadCSVFile() {
         '2': { id: 2, title: 'CSV File 3', lastModified: 1616265832, fileSizeBytes: 100000 },
     };
 
+    console.log('Hello');
+
     yield put(Actions.setCSVMetaData(metaData));
 }
 

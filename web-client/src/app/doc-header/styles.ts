@@ -16,6 +16,7 @@ export const AppIconContainer = styled.div`
     top: 0;
     padding: 8px;
     width: 64px;
+    cursor: pointer;
 
     img {
         width: 100%;

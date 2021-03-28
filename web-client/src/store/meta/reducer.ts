@@ -10,7 +10,7 @@ const CSVManagerReducer: Reducer<CSVMetaDataState, CSVMetaDataAction> = (state =
         case SET_META_DATA:
             return {
                 ...state,
-                csvMetaData: action.payload.data,
+                csvMetaData: action.payload.csvMetaData,
             };
         default:
             return state;

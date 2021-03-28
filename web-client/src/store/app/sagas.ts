@@ -1,7 +1,7 @@
 import { takeLatest } from 'redux-saga/effects';
 
 function* appSagas() {
-    yield takeLatest('', () => {
+    yield takeLatest('hello', () => {
         console.log('Empty func');
     });
 }

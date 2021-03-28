@@ -4,7 +4,8 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { DataTable } from './data-table';
 import { DocumentHeader } from './doc-header';
 import { Selectors } from '../store/app';
-import { Actions } from '../store/csv';
+import { Actions as CSVActions } from '../store/csv';
+import { Actions as MetaActions } from '../store/meta';
 import { LoadingScreen } from './loading-screen';
 import { FileViewingScreen } from './file-viewing-screen';
 
@@ -20,7 +21,8 @@ const App: React.FunctionComponent = () => {
     const isAppLoading = useSelector(Selectors.isAppLoading);
 
     useEffect(() => {
-        dispatch(Actions.getCSVData());
+        dispatch(CSVActions.getCSVData());
+        dispatch(MetaActions.getCSVMetaData());
     }, []);
 
     return isAppLoading ? (

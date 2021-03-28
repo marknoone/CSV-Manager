@@ -2,7 +2,7 @@ import { CSVMetaData } from './';
 import { GlobalState } from '..';
 
 const getCSVMetaData = (state: GlobalState): CSVMetaData[] =>
-    Object.entries(state.meta.csvMetaData).map(([_, value]) => value);
+    Object.keys(state.meta.csvMetaData).map((key) => state.meta.csvMetaData[key]);
 
 export default {
     getCSVMetaData,

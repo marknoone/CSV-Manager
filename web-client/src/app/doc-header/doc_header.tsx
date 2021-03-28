@@ -12,6 +12,7 @@ import {
     ResultCountContainer,
     FileDownloadButton,
 } from './styles';
+import { useHistory } from 'react-router';
 
 type HeaderButtons = {
     [menuTitle: string]: () => void;
@@ -19,6 +20,7 @@ type HeaderButtons = {
 
 const DocumentHeader: React.FunctionComponent = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const documentName = useSelector(Selectors.getCurrentName);
     const resultCount = useSelector(Selectors.getFilteredData).length;
     const headerButtons: HeaderButtons = {
@@ -28,7 +30,7 @@ const DocumentHeader: React.FunctionComponent = () => {
 
     return (
         <LayoutWrapper>
-            <AppIconContainer>
+            <AppIconContainer onClick={() => history.push('/')}>
                 <img src={AppIcon} />
             </AppIconContainer>
             <HeaderContainer>

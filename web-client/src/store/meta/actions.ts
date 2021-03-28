@@ -1,12 +1,18 @@
-import { CSVMetaData, SET_META_DATA } from '.';
+import { CSVMetaData, GET_META_DATA, SET_META_DATA } from '.';
+
+const getCSVMetaData = () => ({
+    type: GET_META_DATA,
+    payload: {},
+});
 
 const setCSVMetaData = (csvMetaData: { [fileID: string]: CSVMetaData }) => ({
     type: SET_META_DATA,
     payload: {
-        data: csvMetaData,
+        csvMetaData: csvMetaData,
     },
 });
 
 export default {
+    getCSVMetaData,
     setCSVMetaData,
 };
