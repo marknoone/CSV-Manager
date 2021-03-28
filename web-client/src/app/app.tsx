@@ -1,10 +1,19 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { DataTable } from './data-table';
 import { DocumentHeader } from './doc-header';
 import { Selectors } from '../store/app';
 import { Actions } from '../store/csv';
 import { LoadingScreen } from './loading-screen';
+import { FileViewingScreen } from './file-viewing-screen';
+
+const DataViewer: React.FunctionComponent = () => (
+    <>
+        <DocumentHeader />
+        <DataTable />
+    </>
+);
 
 const App: React.FunctionComponent = () => {
     const dispatch = useDispatch();
@@ -17,10 +26,12 @@ const App: React.FunctionComponent = () => {
     return isAppLoading ? (
         <LoadingScreen />
     ) : (
-        <>
-            <DocumentHeader />
-            <DataTable />
-        </>
+        <Router>
+            <Switch>
+                <Route path="/:fileID" component={DataViewer} />
+                <Route exact path="/" component={FileViewingScreen} />
+            </Switch>
+        </Router>
     );
 };
 

@@ -2,7 +2,7 @@ import { Reducer } from 'redux';
 import { AppAction, AppState, SET_IS_APP_LOADING } from './';
 
 export const initialState = {
-    isAppLoading: true,
+    isAppLoading: false,
 };
 
 const AppReducer: Reducer<AppState, AppAction> = (state = initialState, action) => {
