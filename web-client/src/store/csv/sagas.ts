@@ -6,8 +6,8 @@ import { put, takeLatest } from 'redux-saga/effects';
 const EMPTY_VALUE = 'BLANK';
 const csvParsingOptions = { header: true };
 
-function* parseCSVFile(action: CSVManagerAction) {
-    if (action.payload.fileID) put(Actions.setActiveFileID(action.payload.fileID));
+export function* parseCSVFile(action: CSVManagerAction) {
+    if (action.payload.fileID) yield put(Actions.setActiveFileID(action.payload.fileID));
 
     const parseCSV = Papa.parse<CSVData>(
         `ID,Title,CreatedAt,FilesizeBytes

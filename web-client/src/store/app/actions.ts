@@ -1,4 +1,6 @@
-import { SET_IS_APP_LOADING } from './';
+import { INIT_APP, SET_IS_APP_LOADING } from './';
+
+const initApp = () => ({ type: INIT_APP, payload: {} });
 
 const setIsAppLoading = (isAppLoading: boolean) => ({
     type: SET_IS_APP_LOADING,
@@ -8,5 +10,6 @@ const setIsAppLoading = (isAppLoading: boolean) => ({
 });
 
 export default {
+    initApp,
     setIsAppLoading,
 };
