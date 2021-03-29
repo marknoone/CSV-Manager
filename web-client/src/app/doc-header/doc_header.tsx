@@ -4,14 +4,7 @@ import { Selectors } from '../../store/csv';
 import { Actions as ModalActions } from '../../store/modals';
 import { Modals } from '../../modals/modal_map';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-    LayoutWrapper,
-    AppIconContainer,
-    HeaderButtonList,
-    HeaderContainer,
-    ResultCountContainer,
-    FileDownloadButton,
-} from './styles';
+import { LayoutWrapper, AppIconContainer, HeaderButtonList, HeaderContainer, FileDownloadButton } from './styles';
 import { useHistory } from 'react-router';
 
 type HeaderButtons = {
@@ -22,9 +15,8 @@ const DocumentHeader: React.FunctionComponent = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const documentName = useSelector(Selectors.getCurrentName);
-    const resultCount = useSelector(Selectors.getFilteredData).length;
     const headerButtons: HeaderButtons = {
-        Open: () => dispatch(ModalActions.showModal(Modals.OpenCSVMenu, {})),
+        Open: () => history.push('/'),
         Upload: () => dispatch(ModalActions.showModal(Modals.ImportPanel, {})),
     };
 
@@ -56,9 +48,6 @@ const DocumentHeader: React.FunctionComponent = () => {
                     </li>
                 </HeaderButtonList>
             </HeaderContainer>
-            <ResultCountContainer>
-                <p>{resultCount} Resulting Rows</p>
-            </ResultCountContainer>
         </LayoutWrapper>
     );
 };

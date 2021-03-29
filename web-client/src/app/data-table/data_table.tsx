@@ -46,7 +46,7 @@ DataTable.displayName = 'DataTable';
 
 const StyledDataTable = styled(DataTable)`
     background-color: #fff;
-    height: calc(100vh - 64px);
+    height: calc(100vh - 112px);
     border: none;
     overflow-y: auto;
     overflow-x: hidden;

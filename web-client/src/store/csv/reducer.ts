@@ -20,7 +20,7 @@ export const initialState = {
 const CSVManagerReducer: Reducer<CSVDataState, CSVManagerAction> = (state = initialState, action) => {
     switch (action.type) {
         case SET_FILTER_ROW_VISIBILITY:
-            return !action.payload.isFilterRowVisible
+            return action.payload.isFilterRowVisible === undefined
                 ? state
                 : {
                       ...state,

@@ -47,8 +47,8 @@ function* parseCSVFile() {
     );
 
     if (parseCSV.errors.length > 0) {
-        console.log(parseCSV.errors);
-        // TODO: Handle parsing errors...
+        alert(parseCSV.errors);
+        return;
     }
 
     const headers = Object.keys(parseCSV.data[0]);

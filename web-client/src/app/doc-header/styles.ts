@@ -63,21 +63,6 @@ export const HeaderButtonList = styled.ul`
     }
 `;
 
-export const ResultCountContainer = styled.div`
-    position: absolute;
-    height: 100%;
-    right: 32px;
-    top: 0;
-
-    p {
-        font-family: 'Open Sans', sans-serif;
-        font-size: 14px;
-        font-weight: 500;
-        line-height: 64px;
-        color: #212529;
-    }
-`;
-
 export const FileDownloadButton = styled.a`
     user-select: none;
     color: #212529;

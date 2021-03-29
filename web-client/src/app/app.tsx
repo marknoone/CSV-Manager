@@ -8,11 +8,13 @@ import { Actions as CSVActions } from '../store/csv';
 import { Actions as MetaActions } from '../store/meta';
 import { LoadingScreen } from './loading-screen';
 import { FileViewingScreen } from './file-viewing-screen';
+import { FooterBar } from './footer-bar';
 
 const DataViewer: React.FunctionComponent = () => (
     <>
         <DocumentHeader />
         <DataTable />
+        <FooterBar />
     </>
 );
 

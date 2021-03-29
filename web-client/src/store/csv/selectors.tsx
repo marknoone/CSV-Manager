@@ -18,7 +18,6 @@ const getFilteredData = createSelector(getDataFilters, getCurrentData, (filters:
     return data.filter((r) => {
         const filterKeys = Object.keys(filters);
         return Object.keys(r).reduce((accum: boolean, columnKey: string) => {
-            console.log(filterKeys);
             if (!filterKeys.includes(columnKey)) return accum;
 
             const val = '' + r[columnKey];
