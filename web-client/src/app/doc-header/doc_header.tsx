@@ -1,11 +1,12 @@
 import React from 'react';
 import AppIcon from './csv.png';
+import { BASE_URL } from '../../constants';
 import { Selectors } from '../../store/csv';
 import { Actions as ModalActions } from '../../store/modals';
 import { Modals } from '../../modals/modal_map';
 import { useDispatch, useSelector } from 'react-redux';
 import { LayoutWrapper, AppIconContainer, HeaderButtonList, HeaderContainer, FileDownloadButton } from './styles';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 type HeaderButtons = {
     [menuTitle: string]: () => void;
@@ -14,6 +15,7 @@ type HeaderButtons = {
 const DocumentHeader: React.FunctionComponent = () => {
     const dispatch = useDispatch();
     const history = useHistory();
+    const { fileID }: any = useParams();
     const documentName = useSelector(Selectors.getCurrentName);
     const headerButtons: HeaderButtons = {
         Open: () => history.push('/'),
@@ -37,7 +39,7 @@ const DocumentHeader: React.FunctionComponent = () => {
                     })}
                     <li>
                         <FileDownloadButton
-                            href="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
+                            href={`${BASE_URL}/csv/${fileID}`}
                             title="Download CSV File"
                             target="_blank"
                             rel="noreferrer"
