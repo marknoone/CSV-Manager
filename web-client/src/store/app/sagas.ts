@@ -4,7 +4,9 @@ import { put, takeLatest, call } from 'redux-saga/effects';
 
 function* initApp() {
     yield call(downloadCSVFile);
-    console.log('Meta data finished.');
+
+    // Can be removed, here to demonstrate loading screen.
+    // yield delay(5000);
 
     yield put(AppActions.setIsAppLoading(false));
 }

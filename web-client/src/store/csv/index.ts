@@ -11,9 +11,13 @@ export type CSVDataState = {
     headers: string[];
     data: CSVData[];
     fileID: string;
+    fileUpload: {
+        progress: number;
+        file: File | null;
+    };
 };
 
-export type CSVManagerAction = {
+export type CSVDataAction = {
     type: string;
     payload: {
         fileID?: string;
@@ -22,9 +26,13 @@ export type CSVManagerAction = {
         filters?: DataFilters;
         isDataLoading?: boolean;
         isFilterRowVisible?: boolean;
+        fileUpload?: File;
+        loadingProgress?: number;
     };
 };
 
+export const UPLOAD_CSV_FILE = '@csv/UPLOAD_FILE';
+export const SET_UPLOAD_PROGRESS = '@csv/SET_UPLOAD_PROGRESS';
 export const GET_CSV_DATA = '@csv/GET_CSV_DATA';
 export const SET_CSV_DATA = '@csv/SET_CSV_DATA';
 export const SET_ACTIVE_FILE_ID = '@csv/SET_ACTIVE_FILE_ID';

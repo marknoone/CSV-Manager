@@ -1,7 +1,9 @@
 import { Reducer } from 'redux';
 import {
-    CSVManagerAction,
+    CSVDataAction,
     CSVDataState,
+    UPLOAD_CSV_FILE,
+    SET_UPLOAD_PROGRESS,
     SET_FILTER_ROW_VISIBILITY,
     SET_CSV_DATA,
     SET_DATA_LOADING,
@@ -16,10 +18,35 @@ export const initialState = {
     filters: {},
     data: [],
     fileID: '',
+    fileUpload: {
+        progress: 0.0,
+        file: null,
+    },
 };
 
-const CSVManagerReducer: Reducer<CSVDataState, CSVManagerAction> = (state = initialState, action) => {
+const CSVManagerReducer: Reducer<CSVDataState, CSVDataAction> = (state = initialState, action) => {
     switch (action.type) {
+        case UPLOAD_CSV_FILE:
+            return action.payload.fileUpload === undefined
+                ? state
+                : {
+                      ...state,
+                      fileUpload: {
+                          progress: 0.0,
+                          file: action.payload.fileUpload,
+                      },
+                  };
+        case SET_UPLOAD_PROGRESS:
+            console.log('Upload progress!');
+            return action.payload.loadingProgress === undefined
+                ? state
+                : {
+                      ...state,
+                      fileUpload: {
+                          ...state.fileUpload,
+                          progress: action.payload.loadingProgress,
+                      },
+                  };
         case SET_ACTIVE_FILE_ID:
             return action.payload.fileID === undefined
                 ? state

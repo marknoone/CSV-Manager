@@ -3,7 +3,7 @@ import { Modals } from '../../modals/modal_map';
 import { OPEN_MODAL_ACTION, CLOSE_MODAL_ACTION, ModalAction, ModalState } from '.';
 
 export const initialState = {
-    isModalOpen: false,
+    isModalOpen: true,
     modalType: Modals.ImportPanel,
     modalProps: {},
 };

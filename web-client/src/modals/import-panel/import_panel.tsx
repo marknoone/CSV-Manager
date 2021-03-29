@@ -1,17 +1,24 @@
 import React, { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
+import { useDispatch } from 'react-redux';
 import { DragNDropContainer, DragNDropElement, MessageHighlight, MessageSubText, ManualUploadButton } from './styles';
+import { Actions as CSVActions } from '../../store/csv';
 import Modal from '../modal';
 
 const MAX_FILE_SIZE = 52428800; // 50MB in bytes
-const ACCEPTED_MIME_TYPE = ['image/*'];
+const ACCEPTED_MIME_TYPE = ['text/csv'];
 
 const ImportPanel: React.FunctionComponent = () => {
+    const dispatch = useDispatch();
+    // const loadingProgress = useSelector();
+
     const onDropAccepted = useCallback((acceptedFiles) => {
-        console.log(acceptedFiles);
+        console.log('ACCEPT');
+        dispatch(CSVActions.uploadCSVFile(acceptedFiles[0]));
     }, []);
 
     const onDropReject = useCallback((acceptedFiles) => {
+        console.log('ERROR');
         console.log(acceptedFiles);
     }, []);
 

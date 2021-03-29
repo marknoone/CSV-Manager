@@ -8,6 +8,8 @@ const isFilterRowVisibile = (state: GlobalState): boolean => state.csv.isFilterR
 const getDataFilters = (state: GlobalState): DataFilters => state.csv.filters;
 const getCSVHeaders = (state: GlobalState): string[] => state.csv.headers;
 const getCurrentDataRowCount = (state: GlobalState): number => state.csv.data.length;
+const getUploadFileLoadProgress = (state: GlobalState): number => state.csv.fileUpload.progress;
+const getUploadFile = (state: GlobalState): File | null => state.csv.fileUpload.file;
 const getCurrentName = (state: GlobalState): string => {
     const activeFileMeta = state.meta.csvMetaData[state.csv.fileID];
     return activeFileMeta ? activeFileMeta.title : 'Untitled Document';
@@ -28,6 +30,8 @@ const getFilteredData = createSelector(getDataFilters, getCurrentData, (filters:
 });
 
 export default {
+    getUploadFileLoadProgress,
+    getUploadFile,
     isFilterRowVisibile,
     isCSVFileDataLoading,
     getCurrentDataRowCount,
