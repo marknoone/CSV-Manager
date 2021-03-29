@@ -5,7 +5,7 @@ import { Actions as ModalActions } from '../../store/modals';
 import { Modals } from '../../modals/modal_map';
 import { useDispatch, useSelector } from 'react-redux';
 import { LayoutWrapper, AppIconContainer, HeaderButtonList, HeaderContainer, FileDownloadButton } from './styles';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 
 type HeaderButtons = {
     [menuTitle: string]: () => void;
@@ -22,11 +22,11 @@ const DocumentHeader: React.FunctionComponent = () => {
 
     return (
         <LayoutWrapper>
-            <AppIconContainer onClick={() => history.push('/')}>
+            <AppIconContainer data-testid="app-icon" onClick={() => history.push('/')}>
                 <img src={AppIcon} />
             </AppIconContainer>
             <HeaderContainer>
-                <p>{documentName}</p>
+                <p data-testid="document-name">{documentName}</p>
                 <HeaderButtonList>
                     {Object.entries(headerButtons).map(([buttonName, buttonCallback]) => {
                         return (

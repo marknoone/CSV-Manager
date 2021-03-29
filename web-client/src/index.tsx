@@ -21,7 +21,7 @@ const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(sagas
 sagas.run(mySagas);
 
 // Init app.
-store.dispatch(CSVActions.getCSVData());
+store.dispatch(CSVActions.getCSVData('1'));
 store.dispatch(MetaActions.getCSVMetaData());
 
 ReactDOM.render(

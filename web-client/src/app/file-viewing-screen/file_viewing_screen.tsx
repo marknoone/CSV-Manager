@@ -74,7 +74,10 @@ const FileViewingScreen: React.FunctionComponent = () => {
                     {metaDataList.map((metaData) => (
                         <FileSummary key={metaData.id} {...metaData} />
                     ))}
-                    <ImportFileRow onClick={() => dispatch(ModalActions.showModal(Modals.ImportPanel, {}))}>
+                    <ImportFileRow
+                        data-testid="import-file-row"
+                        onClick={() => dispatch(ModalActions.showModal(Modals.ImportPanel, {}))}
+                    >
                         <ImportFileName>
                             <ImportFileIcon>
                                 <FontAwesomeIcon icon={faPlus} />

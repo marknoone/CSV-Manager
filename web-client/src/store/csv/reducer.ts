@@ -6,6 +6,7 @@ import {
     SET_CSV_DATA,
     SET_DATA_LOADING,
     SET_DATA_FILTERS,
+    SET_ACTIVE_FILE_ID,
 } from './';
 
 export const initialState = {
@@ -19,6 +20,13 @@ export const initialState = {
 
 const CSVManagerReducer: Reducer<CSVDataState, CSVManagerAction> = (state = initialState, action) => {
     switch (action.type) {
+        case SET_ACTIVE_FILE_ID:
+            return action.payload.fileID === undefined
+                ? state
+                : {
+                      ...state,
+                      fileID: action.payload.fileID,
+                  };
         case SET_FILTER_ROW_VISIBILITY:
             return action.payload.isFilterRowVisible === undefined
                 ? state

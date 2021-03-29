@@ -16,6 +16,7 @@ export type CSVDataState = {
 export type CSVManagerAction = {
     type: string;
     payload: {
+        fileID?: string;
         headers?: string[];
         data?: CSVData[];
         filters?: DataFilters;
@@ -26,6 +27,7 @@ export type CSVManagerAction = {
 
 export const GET_CSV_DATA = '@csv/GET_CSV_DATA';
 export const SET_CSV_DATA = '@csv/SET_CSV_DATA';
+export const SET_ACTIVE_FILE_ID = '@csv/SET_ACTIVE_FILE_ID';
 export const SET_DATA_LOADING = '@csv/SET_DATA_LOADING';
 export const SET_DATA_FILTERS = '@csv/SET_DATA_FILTERS';
 export const SET_FILTER_ROW_VISIBILITY = '@csv/SET_FILTER_ROW_VISIBILITY';
