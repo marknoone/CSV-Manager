@@ -1,5 +1,5 @@
-import { DataFilters } from './';
-import { CSVData } from './';
+import { DataFilters } from '.';
+import { CSVData } from '.';
 import { GlobalState } from '..';
 import { createSelector } from 'reselect';
 
