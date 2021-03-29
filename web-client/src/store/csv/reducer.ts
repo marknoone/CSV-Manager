@@ -9,11 +9,12 @@ import {
     SET_DATA_LOADING,
     SET_DATA_FILTERS,
     SET_ACTIVE_FILE_ID,
+    GET_CSV_DATA,
 } from './';
 
 export const initialState = {
     isFilterRowVisible: true,
-    isDataLoading: false,
+    isDataLoading: true,
     headers: [],
     filters: {},
     data: [],
@@ -26,6 +27,11 @@ export const initialState = {
 
 const CSVManagerReducer: Reducer<CSVDataState, CSVDataAction> = (state = initialState, action) => {
     switch (action.type) {
+        case GET_CSV_DATA:
+            return {
+                ...state,
+                isDataLoading: true,
+            };
         case UPLOAD_CSV_FILE:
             return action.payload.fileUpload === undefined
                 ? state
@@ -75,6 +81,7 @@ const CSVManagerReducer: Reducer<CSVDataState, CSVDataAction> = (state = initial
                       headers: action.payload.headers,
                       data: action.payload.data,
                       filters: action.payload.headers.reduce((accum, val) => ({ ...accum, [val]: '' }), {}),
+                      isDataLoading: false,
                   }
                 : state;
         case SET_DATA_FILTERS:

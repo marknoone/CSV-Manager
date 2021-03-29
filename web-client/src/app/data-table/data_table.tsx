@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { CSVData, Selectors, Actions, DataFilters } from '../../store/csv';
 import NoResultsRenderer from './no_results';
 import FilterRenderer from './filter_renderer';
+import LoadingData from './loading_data';
 
 type DataTableProps = { className?: string };
 const DataTable: React.FunctionComponent<DataTableProps> = ({ className }: DataTableProps) => {
@@ -14,6 +15,7 @@ const DataTable: React.FunctionComponent<DataTableProps> = ({ className }: DataT
     const csvHeaders = useSelector(Selectors.getCSVHeaders);
     const dataFilters = useSelector(Selectors.getDataFilters);
     const isFilterRowVisibile = useSelector(Selectors.isFilterRowVisibile);
+    const isDataLoading = useSelector(Selectors.isCSVFileDataLoading);
     const setDataFilters = (filters: DataFilters) => dispatch(Actions.setDataFilters(filters));
 
     const reactDataGridFriendlyColumns = useMemo((): readonly Column<CSVData>[] => {
@@ -25,7 +27,9 @@ const DataTable: React.FunctionComponent<DataTableProps> = ({ className }: DataT
         }));
     }, [csvHeaders]);
 
-    return (
+    return isDataLoading ? (
+        <LoadingData />
+    ) : (
         <DataGrid
             className={'rdg-light ' + className}
             columns={reactDataGridFriendlyColumns}

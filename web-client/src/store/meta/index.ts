@@ -2,9 +2,9 @@ import CSVManagerReducer from './reducer';
 
 export type CSVMetaData = {
     id: number;
-    title: string;
-    lastModified: number;
-    fileSizeBytes: number;
+    name: string;
+    lastModified: string;
+    createdAt: string;
 };
 
 export type CSVMetaDataState = {

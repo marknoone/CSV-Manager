@@ -13,7 +13,7 @@ const getUploadFileLoadProgress = (state: GlobalState): number => state.csv.file
 const getUploadFile = (state: GlobalState): File | null => state.csv.fileUpload.file;
 const getCurrentName = (state: GlobalState): string => {
     const activeFileMeta = state.meta.csvMetaData[state.csv.fileID];
-    return activeFileMeta ? activeFileMeta.title : 'Untitled Document';
+    return activeFileMeta ? activeFileMeta.name : 'Untitled Document';
 };
 
 const getCurrentData = (state: GlobalState): CSVData[] => state.csv.data;

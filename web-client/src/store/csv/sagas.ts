@@ -8,7 +8,11 @@ import { put, takeLatest, takeEvery } from 'redux-saga/effects';
 import { channel } from 'redux-saga';
 
 const EMPTY_VALUE = 'BLANK';
-const csvParsingOptions = { header: true };
+const csvParsingOptions: Papa.ParseConfig = {
+    header: true,
+    delimiter: ',',
+    skipEmptyLines: true,
+};
 
 const fileUploadChannel = channel();
 
@@ -28,52 +32,21 @@ type FileUploadChannelAction = {
 export function* parseCSVFile(action: CSVDataAction) {
     if (action.payload.fileID) yield put(Actions.setActiveFileID(action.payload.fileID));
 
-    const parseCSV = Papa.parse<CSVData>(
-        `ID,Title,CreatedAt,FilesizeBytes
-0,CSV File 1,,10000
-1,CSV File 2,1616265832,100
-1,CSV File 2,1616265832,100
-1,CSV File 2,1616265832,100
-1,CSV File 2,1616265832,100
-1,CSV File 2,1616265832,100
-1,CSV File 2,1616265832,100
-1,CSV File 2,1616265832,100
-1,CSV File 2,1616265832,100
-1,CSV File 2,1616265832,100
-1,CSV File 2,1616265832,100
-1,CSV File 2,1616265832,100
-1,CSV File 2,1616265832,100
-1,CSV File 2,1616265832,100
-1,CSV File 2,1616265832,100
-1,CSV File 2,1616265832,100
-1,CSV File 2,1616265832,100
-1,CSV File 2,1616265832,100
-1,CSV File 2,1616265832,100
-1,CSV File 2,1616265832,100
-1,CSV File 2,1616265832,100
-1,CSV File 2,1616265832,100
-1,CSV File 2,1616265832,100
-1,CSV File 2,1616265832,100
-1,CSV File 2,1616265832,100
-1,CSV File 2,1616265832,100
-1,CSV File 2,1616265832,100
-1,CSV File 2,1616265832,100
-1,CSV File 2,1616265832,100
-1,CSV File 2,1616265832,100
-1,CSV File 2,1616265832,100
-1,CSV File 2,1616265832,100
-1,CSV File 2,1616265832,100
-2,CSV File 3,1616265832,100000`,
-        csvParsingOptions,
-    );
+    const parsedCSV: Papa.ParseResult<CSVData> = yield axios
+        .get(`${BASE_URL}/csv/${action.payload.fileID}`)
+        .then(function (response) {
+            console.log(response);
+            return Papa.parse<CSVData>(response.data, csvParsingOptions);
+        });
 
-    if (parseCSV.errors.length > 0) {
-        alert(parseCSV.errors);
+    if (parsedCSV.errors.length > 0) {
+        console.log(parsedCSV.errors);
+        alert('An error has occured parsing your file.\nPlease try again later.');
         return;
     }
 
-    const headers = Object.keys(parseCSV.data[0]);
-    const csvData = parseCSV.data.map((row: CSVData) => {
+    const headers = Object.keys(parsedCSV.data[0]);
+    const csvData = parsedCSV.data.map((row: CSVData) => {
         headers.forEach((header) => {
             row[header] = row[header] == '' ? EMPTY_VALUE : row[header];
         });
