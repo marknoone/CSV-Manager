@@ -1,6 +1,16 @@
-version: '3.6'
+version: "3.6"
 
 services:
+  web_server:
+    build: ./web-client
+    depends_on:
+      - api
+    networks:
+      - default
+    ports:
+      - 8081:80
+    restart: always
+
   api:
     build: .
     depends_on:

@@ -18,3 +18,4 @@ COPY . /usr/src/app/
 EXPOSE 5000
 
 ENTRYPOINT ["gunicorn", "-c", "gunicorn.config.py", "wsgi:app"]
+
