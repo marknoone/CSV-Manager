@@ -60,9 +60,10 @@ export const FooterBar: React.FunctionComponent = () => {
 
     return (
         <FooterbarContainer>
-            <ResultsText>{resultingRows} Rows Found.</ResultsText>
+            <ResultsText data-testid="footer-results">{resultingRows} Rows Found.</ResultsText>
             <FilterLabelText>Filter Toggle:</FilterLabelText>
             <FilterToggleContainer
+                data-testid="footer-filter-toggle"
                 onClick={toggleFilter}
                 style={{
                     backgroundColor: isFilterRowVisibile ? '#1dd1a1' : '#ee5253',

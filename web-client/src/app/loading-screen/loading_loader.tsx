@@ -55,7 +55,7 @@ const LoadingContainer = styled.div`
 `;
 
 const LoadingLoader: React.FunctionComponent = () => (
-    <LoadingContainer>
+    <LoadingContainer data-testid="loading-icon">
         <span className="dot"></span>
         <div className="dots">
             <span></span>

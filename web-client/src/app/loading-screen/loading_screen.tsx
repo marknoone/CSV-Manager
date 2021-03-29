@@ -36,7 +36,7 @@ const LoadingScreen: React.FunctionComponent = () => {
     return (
         <LoadingScreenContainer>
             <LoadingLoader />
-            <LoadingText>Loading CSV Application</LoadingText>
+            <LoadingText data-testid="loading-title">Loading CSV Application</LoadingText>
             <LoadingSubtext>{message}</LoadingSubtext>
         </LoadingScreenContainer>
     );

@@ -13,10 +13,16 @@ import ModalManager from './modals/modal_manager';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 
+import { Actions as CSVActions } from './store/csv';
+import { Actions as MetaActions } from './store/meta';
+
 const sagas = createSagaMiddleware();
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(sagas)));
-
 sagas.run(mySagas);
+
+// Init app.
+store.dispatch(CSVActions.getCSVData());
+store.dispatch(MetaActions.getCSVMetaData());
 
 ReactDOM.render(
     <React.StrictMode>
