@@ -22,14 +22,14 @@ const ErrConfirmationText = styled(ConfirmationText)`
     color: #d63031;
 `;
 
-const ConfirmationPanel: React.FunctionComponent = () => {
+const AlertPanel: React.FunctionComponent = () => {
     const modalProps = useSelector(Selectors.getCurrrentModalProps);
 
     return (
         <Modal>
             <ConfirmationTextContainer>
-                {modalProps.confirmationMessage ? (
-                    <ConfirmationText>{modalProps.confirmationMessage}</ConfirmationText>
+                {modalProps.message ? (
+                    <ConfirmationText>{modalProps.message}</ConfirmationText>
                 ) : (
                     <ErrConfirmationText>Err: No message passed.</ErrConfirmationText>
                 )}
@@ -38,4 +38,4 @@ const ConfirmationPanel: React.FunctionComponent = () => {
     );
 };
 
-export default ConfirmationPanel;
+export default AlertPanel;

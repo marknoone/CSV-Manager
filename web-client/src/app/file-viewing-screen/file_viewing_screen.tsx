@@ -25,7 +25,7 @@ const HintText = styled.p`
 const FileViewingContainer = styled.div`
     width: 100vw;
     height: 100vh;
-    padding: 0px 35vw;
+    padding: 0px 5vw;
 `;
 
 const FileList = styled.ul`
@@ -33,6 +33,9 @@ const FileList = styled.ul`
     padding: 0;
     list-style: none;
     text-decoration: none;
+    width: 100%;
+    height: 85%;
+    overflow-y: auto;
 `;
 
 const ImportFileRow = styled.li`

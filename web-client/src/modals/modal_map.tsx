@@ -1,4 +1,4 @@
-import { ConfirmationPanel } from './confirmation-panel';
+import { AlertPanel } from './alert-panel';
 import { ImportPanel } from './import-panel';
 
 type ModalMap = {
@@ -6,12 +6,11 @@ type ModalMap = {
 };
 
 export enum Modals {
-    ConfirmationPanel = 1,
-    OpenCSVMenu,
+    AlertPanel = 1,
     ImportPanel,
 }
 
 export const MODAL_MAP: ModalMap = {
-    [Modals.ConfirmationPanel]: <ConfirmationPanel />,
+    [Modals.AlertPanel]: <AlertPanel />,
     [Modals.ImportPanel]: <ImportPanel />,
 };

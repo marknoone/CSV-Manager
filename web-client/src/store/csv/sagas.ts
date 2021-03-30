@@ -3,9 +3,10 @@ import axios from 'axios';
 import { BASE_URL } from '../../constants';
 import { CSVData, UPLOAD_CSV_FILE } from '.';
 import { GET_CSV_DATA, Actions, CSVDataAction } from './';
-import { Actions as MetaActions } from '../meta';
+import { Actions as ModalActions } from '../modals';
 import { put, takeLatest, takeEvery } from 'redux-saga/effects';
-import { channel } from 'redux-saga';
+import { Modals } from '../../modals/modal_map';
+import { fileUploadChannel, watchUploadFileChannel, FileUploadChannelType, ProgressObj } from './file_upload_channel';
 
 const EMPTY_VALUE = 'BLANK';
 const csvParsingOptions: Papa.ParseConfig = {
@@ -14,34 +15,20 @@ const csvParsingOptions: Papa.ParseConfig = {
     skipEmptyLines: true,
 };
 
-const fileUploadChannel = channel();
-
-type ProgressObj = { loaded: number; total: number };
-enum FileUploadChannelType {
-    PROGRESS_UPDATE = 1,
-    UPLOAD_COMPLETE,
-}
-
-type FileUploadChannelAction = {
-    type: FileUploadChannelType;
-    payload: {
-        progress?: ProgressObj;
-    };
-};
-
 export function* parseCSVFile(action: CSVDataAction) {
-    if (action.payload.fileID) yield put(Actions.setActiveFileID(action.payload.fileID));
-
     const parsedCSV: Papa.ParseResult<CSVData> = yield axios
         .get(`${BASE_URL}/csv/${action.payload.fileID}`)
         .then(function (response) {
-            console.log(response);
             return Papa.parse<CSVData>(response.data, csvParsingOptions);
         });
 
     if (parsedCSV.errors.length > 0) {
         console.log(parsedCSV.errors);
-        alert('An error has occured parsing your file.\nPlease try again later.');
+        yield put(
+            ModalActions.showModal(Modals.AlertPanel, {
+                message: `An error has occured parsing your file.\nPlease try again later.\n ${parsedCSV.errors}`,
+            }),
+        );
         return;
     }
 
@@ -53,6 +40,7 @@ export function* parseCSVFile(action: CSVDataAction) {
         return row;
     });
 
+    if (action.payload.fileID) yield put(Actions.setActiveFileID(action.payload.fileID));
     yield put(Actions.setCSVData(headers, csvData));
 }
 
@@ -84,23 +72,13 @@ function* uploadCSVFile(action: CSVDataAction) {
             fileUploadChannel.put(fileUploadAction);
         })
         .catch((e: Error) => {
-            console.log(e);
-        });
-}
+            const fileUploadAction = {
+                type: FileUploadChannelType.UPLOAD_ERROR,
+                payload: { error: e },
+            };
 
-export function* watchUploadFileChannel(action: FileUploadChannelAction) {
-    switch (action.type) {
-        case FileUploadChannelType.PROGRESS_UPDATE:
-            if (action.payload.progress) {
-                const progressAmount = action.payload.progress.loaded / action.payload.progress.total;
-                yield put(Actions.setUploadProgress(progressAmount));
-            }
-            break;
-        case FileUploadChannelType.UPLOAD_COMPLETE:
-            yield put(MetaActions.getCSVMetaData());
-            break;
-        default:
-    }
+            fileUploadChannel.put(fileUploadAction);
+        });
 }
 
 function* csvSagas() {
