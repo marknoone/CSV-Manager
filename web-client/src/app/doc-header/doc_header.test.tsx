@@ -46,13 +46,13 @@ describe('Test Document Header', () => {
                 csvMetaData: {
                     '1': {
                         id: 1,
-                        title: 'Test title',
+                        name: 'Test title',
                         lastModified: 0,
                         fileSizeBytes: 0,
                     },
                     '2': {
                         id: 2,
-                        title: 'Test title 2',
+                        name: 'Test title 2',
                         lastModified: 0,
                         fileSizeBytes: 0,
                     },
@@ -65,7 +65,9 @@ describe('Test Document Header', () => {
 
         render(
             <Provider store={store}>
-                <DocHeader />
+                <Router history={createMemoryHistory()}>
+                    <DocHeader />
+                </Router>
             </Provider>,
         );
 
@@ -73,6 +75,7 @@ describe('Test Document Header', () => {
         expect(documentName).toHaveTextContent('Test title');
 
         store.dispatch(CSVActions.setActiveFileID('2'));
+        console.log(store);
         expect(documentName).toHaveTextContent('Test title 2');
     });
 });

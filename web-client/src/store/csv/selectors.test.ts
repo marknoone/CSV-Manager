@@ -29,6 +29,10 @@ const getGlobalStateWithCSVFilters: (filters: DataFilters) => GlobalState = (fil
         data: SAMPLE_DATA,
         headers: SAMPLE_DATA_HEADERS,
         fileID: '',
+        fileUpload: {
+            progress: 0.0,
+            file: null,
+        },
     },
 });
 
