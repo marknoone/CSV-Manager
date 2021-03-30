@@ -15,3 +15,5 @@ _Note: To build this application, the local machine must have npm (Node Package 
 6. Return to the project root directory `cd ..`.
 7. Build the Docker image using `docker build --no-cache .`.
 8. Run the docker image using `docker-compose up`.
+9. Visit `http://localhost:8081/` in your web browser.
+    * _Note: This application was developed with Firefox, cross-platform support is not guaranteed._
